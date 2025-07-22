@@ -9,20 +9,17 @@
 </head>
 <body>
 <header>
-    <h1>St Vince</h1>
-    <p>A collection of original pieces, composed by a human with passion and the help of artificial intelligence - a musical reflection on climate change, free to listen and to feel.</p>
-
-    <div class="switch-wrapper">
-        <span class="label-left">🌐 Web</span>
-        <label class="toggle-switch">
-            <input type="checkbox" id="toggle-quality" />
-            <span class="slider"></span>
-        </label>
-        <span class="label-right">🎧 HiFi</span>
+    <div class="video-background">
+        <video autoplay muted loop playsinline>
+            <source src="assets/banner/sea.mp4" type="video/mp4">
+        </video>
     </div>
-
-
+    <div class="header-content">
+        <h1>St Vince</h1>
+        <p>A collection of original pieces, composed by a human with passion and the help of artificial intelligence - a musical reflection on climate change, free to listen and to feel.</p>
+    </div>
 </header>
+
 
 <main>
     <section class="track" data-audio="assets/audio/mp3/Frozen.Echoes.mp3">
@@ -91,7 +88,16 @@
 
 
 <footer>
-    <p>&copy; 2025 Vincent Lagny – Version 1.22 - Musiques IA – Licence CC BY-NC-SA 4.0</p>
+    <div class="switch-wrapper">
+        <span class="label-left">🌐 Web</span>
+        <label class="toggle-switch">
+            <input type="checkbox" id="toggle-quality" />
+            <span class="slider"></span>
+        </label>
+        <span class="label-right">🎧 HiFi</span>
+    </div>
+
+    <p>&copy; 2025 Vincent Lagny – Version 1.23 - Musiques IA – Licence CC BY-NC-SA 4.0</p>
 </footer>
 
 <script>

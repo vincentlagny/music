@@ -7,10 +7,38 @@ body {
 }
 
 header {
-    text-align: center;
-    padding: 2em 1em;
-    background: linear-gradient(to right, #2b2d42, #3f4045);
+    position: relative;
+    overflow: hidden;
+    height: 300px; /* hauteur du bandeau, ajuste à ta convenance */
     color: #f1f1f1;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.video-background video {
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    transform: scale(1.1); /* zoom léger pour éviter les bandes noires */
+}
+
+.header-content {
+    position: relative;
+    z-index: 1;
+    padding: 2em 1em;
+    background: rgba(0, 0, 0, 0.4); /* fond semi-transparent pour lisibilité */
 }
 
 header h1 {
