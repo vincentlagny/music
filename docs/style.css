@@ -45,14 +45,6 @@ main {
     flex-wrap: wrap;
 }
 
-.cover {
-    width: 160px;
-    height: 160px;
-    object-fit: cover;
-    border-radius: 10px;
-    flex-shrink: 0;
-}
-
 .info {
     flex: 1;
     min-width: 250px;
@@ -169,29 +161,6 @@ footer {
     height: 0;
 }
 
-.slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #666;
-    transition: .4s;
-    border-radius: 34px;
-}
-
-.slider::before {
-    position: absolute;
-    content: "";
-    height: 22px;
-    width: 22px;
-    left: 4px;
-    bottom: 3px;
-    background-color: white;
-    transition: .4s;
-    border-radius: 50%;
-}
 
 input:checked + .slider {
     background-color: #ffaf7b;
@@ -261,4 +230,29 @@ input:checked + .slider:before {
 
 .toggle-switch input:checked + .slider::before {
     transform: translateX(28px);
+}
+
+.switch-button {
+    text-align: center;
+    margin-top: 1.5em;
+}
+
+.quality-button {
+    background-color: #444;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 0.6em 2em;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.quality-button.hifi {
+    background-color: #4caf50;
+}
+
+.quality-button.web {
+    background-color: #2196f3;
 }
