@@ -97,7 +97,7 @@
         <span class="label-right">🎧 HiFi</span>
     </div>
 
-    <p>&copy; 2025 Vincent Lagny – Version 1.23 - Musiques IA – Licence CC BY-NC-SA 4.0</p>
+    <p>&copy; 2025 Vincent Lagny – Version 1.24 - Musiques IA – Licence CC BY-NC-SA 4.0</p>
 </footer>
 
 <script>
@@ -235,6 +235,15 @@
             iconOverlay,
             trackElement: track
         });
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const video = document.querySelector('header video');
+        if (video) {
+            video.playbackRate = 0.25; // 0.5 = deux fois plus lent, 2.0 = deux fois plus rapide
+        }
     });
 </script>
 
