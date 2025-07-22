@@ -16,7 +16,7 @@
 <main>
     <section class="track" data-audio="assets/audio/Frozen.Echoes.wav">
         <div class="cover-container">
-            <img src="assets/covers/Frozen Echoes.png" alt="Frozen.Echoes" class="cover" />
+            <img src="assets/covers/Frozen.Echoes.png" alt="Frozen Echoes" class="cover" />
             <div class="icon-overlay play"></div>
         </div>
         <div class="info">
@@ -26,7 +26,6 @@
                 It speaks to the soul of those who still know how to listen to the cold.</p>
 
             <div class="waveform"></div>
-            <button class="play-btn">▶️ Play / Pause</button>
         </div>
     </section>
 
@@ -42,7 +41,6 @@
                 It speaks to the heart of those who still know how to listen to the woods.</p>
 
             <div class="waveform"></div>
-            <button class="play-btn">▶️ Play / Pause</button>
         </div>
     </section>
 
@@ -60,7 +58,6 @@
             <p>This is not a lament — but a vigil.</p>
 
             <div class="waveform"></div>
-            <button class="play-btn">▶️ Play / Pause</button>
         </div>
     </section>
 
@@ -76,7 +73,6 @@
             <p>This is music for the spaces in between, where absence speaks louder than presence, and where melancholy becomes a gentle companion to the wandering soul.</p>
 
             <div class="waveform"></div>
-            <button class="play-btn">▶️ Play / Pause</button>
         </div>
     </section>
 
@@ -84,11 +80,13 @@
 
 
 <footer>
-    <p>&copy; 2025 Vincent Lagny – Version 1.07 - Musiques IA – Licence CC BY-NC-SA 4.0</p>
+    <p>&copy; 2025 Vincent Lagny – Version 1.08 - Musiques IA – Licence CC BY-NC-SA 4.0</p>
+    <img src="https://hits.link/button.svg?url=https%3A%2F%2Fvincentlagny.github.io%2Fmusic%2F" alt="Visits counter" />
 </footer>
 
 <script>
     const tracks = document.querySelectorAll('.track');
+    let currentPlaying = null;
 
     tracks.forEach((track) => {
         const container = track.querySelector('.waveform');
@@ -99,7 +97,7 @@
         const wavesurfer = WaveSurfer.create({
             container,
             waveColor: '#999',
-            progressColor: '#ff7b54',
+            progressColor: '#fff',
             height: 80,
             responsive: true,
             barWidth: 2,
@@ -109,9 +107,20 @@
         wavesurfer.load(audioSrc);
 
         coverContainer.addEventListener('click', () => {
+            // Si un autre player est en cours de lecture, le mettre en pause
+            if (currentPlaying && currentPlaying !== wavesurfer) {
+                currentPlaying.pause();
+            }
+
             wavesurfer.playPause();
+
+            // Met à jour le lecteur actuellement actif
+            if (wavesurfer.isPlaying()) {
+                currentPlaying = wavesurfer;
+            }
         });
 
+        // Met à jour l’icône en fonction de l’état
         wavesurfer.on('play', () => {
             iconOverlay.classList.remove('play');
             iconOverlay.classList.add('pause');
@@ -125,6 +134,7 @@
         wavesurfer.on('finish', () => {
             iconOverlay.classList.remove('pause');
             iconOverlay.classList.add('play');
+            currentPlaying = null;
         });
     });
 </script>
