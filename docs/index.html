@@ -12,7 +12,13 @@
     <h1>St Vince</h1>
     <p>A collection of original pieces, composed by a human with passion and the help of artificial intelligence - a musical reflection on climate change, free to listen and to feel.</p>
 
-    <button id="toggle-quality">🔊 Mode HiFi</button>
+    <div class="quality-switch">
+        <label class="switch">
+            <input type="checkbox" id="toggle-quality">
+            <span class="slider"></span>
+        </label>
+        <span id="quality-label">Qualité Web</span>
+    </div>
 
 </header>
 
@@ -83,28 +89,28 @@
 
 
 <footer>
-    <p>&copy; 2025 Vincent Lagny – Version 1.12 - Musiques IA – Licence CC BY-NC-SA 4.0</p>
+    <p>&copy; 2025 Vincent Lagny – Version 1.14 - Musiques IA – Licence CC BY-NC-SA 4.0</p>
 </footer>
 
 <script>
     const tracks = document.querySelectorAll('.track');
     let currentPlaying = null;
     let isHiFi = false;
-    const qualityBtn = document.getElementById('toggle-quality');
-
+    const qualitySwitch = document.getElementById('toggle-quality');
+    const qualityLabel = document.getElementById('quality-label');
     const players = [];
 
-    // Initialisation
+    // Initialisation de chaque lecteur
     tracks.forEach((track) => {
         const container = track.querySelector('.waveform');
         const coverContainer = track.querySelector('.cover-container');
         const iconOverlay = track.querySelector('.icon-overlay');
         const baseFilename = track.getAttribute('data-audio')
-            .replace(/^assets\/audio\/mp3\//, '')  // ex: Wings.Over.the.Fire.mp3
+            .replace(/^assets\/audio\/mp3\//, '')
             .replace(/\.mp3$/, '');
 
-        // Crée le player
-        const wavesurfer = WaveSurfer.create({
+        let currentFormat = 'mp3';
+        const ws = WaveSurfer.create({
             container,
             waveColor: '#999',
             progressColor: '#ff7b54',
@@ -114,62 +120,64 @@
             cursorColor: '#fff'
         });
 
-        wavesurfer.load(`assets/audio/mp3/${baseFilename}.mp3`);
+        ws.load(`assets/audio/${currentFormat}/${baseFilename}.${currentFormat}`);
 
         coverContainer.addEventListener('click', () => {
-            if (currentPlaying && currentPlaying !== wavesurfer) {
+            if (currentPlaying && currentPlaying !== ws) {
                 currentPlaying.pause();
             }
-            wavesurfer.playPause();
-            if (wavesurfer.isPlaying()) {
-                currentPlaying = wavesurfer;
+            ws.playPause();
+            if (ws.isPlaying()) {
+                currentPlaying = ws;
             }
         });
 
-        wavesurfer.on('play', () => {
+        ws.on('play', () => {
             iconOverlay.classList.remove('play');
             iconOverlay.classList.add('pause');
         });
 
-        wavesurfer.on('pause', () => {
+        ws.on('pause', () => {
             iconOverlay.classList.remove('pause');
             iconOverlay.classList.add('play');
         });
 
-        wavesurfer.on('finish', () => {
+        ws.on('finish', () => {
             iconOverlay.classList.remove('pause');
             iconOverlay.classList.add('play');
             currentPlaying = null;
         });
 
-        // Sauvegarde pour basculement de qualité
         players.push({
-            wavesurfer,
+            wavesurfer: ws,
+            baseFilename,
             container,
             iconOverlay,
-            baseFilename
+            currentFormat
         });
     });
 
-    // Changement de qualité (mp3 ↔ wav)
-    qualityBtn.addEventListener('click', () => {
-        isHiFi = !isHiFi;
-        qualityBtn.textContent = isHiFi ? '🎧 Mode Low-Fi' : '🔊 Mode HiFi';
+    // Bascule entre mp3 / wav
+    qualitySwitch.addEventListener('change', () => {
+        isHiFi = qualitySwitch.checked;
+        qualityLabel.textContent = isHiFi ? 'Qualité HiFi' : 'Qualité Web';
 
-        let wasPlaying = null;
+        let currentTime = 0;
+        let resumeFilename = null;
 
-        players.forEach(({ wavesurfer, baseFilename, iconOverlay }) => {
-            const currentTime = wavesurfer.getCurrentTime();
-            const playing = wavesurfer.isPlaying();
-
-            if (playing) {
-                wasPlaying = { wavesurfer, baseFilename, currentTime };
+        players.forEach((player, i) => {
+            const { wavesurfer, container, baseFilename, iconOverlay } = player;
+            const wasPlaying = wavesurfer.isPlaying();
+            if (wasPlaying) {
+                currentTime = wavesurfer.getCurrentTime();
+                resumeFilename = baseFilename;
             }
 
             wavesurfer.destroy();
 
-            const newWavesurfer = WaveSurfer.create({
-                container: wavesurfer.container,
+            const newFormat = isHiFi ? 'wav' : 'mp3';
+            const newWs = WaveSurfer.create({
+                container,
                 waveColor: '#999',
                 progressColor: '#ff7b54',
                 height: 80,
@@ -178,38 +186,39 @@
                 cursorColor: '#fff'
             });
 
-            const extension = isHiFi ? 'wav' : 'mp3';
-            newWavesurfer.load(`assets/audio/${extension}/${baseFilename}.${extension}`);
+            const filePath = `assets/audio/${newFormat}/${baseFilename}.${newFormat}`;
+            newWs.load(filePath);
 
-            newWavesurfer.on('ready', () => {
-                if (wasPlaying && wasPlaying.baseFilename === baseFilename) {
-                    newWavesurfer.setCurrentTime(wasPlaying.currentTime);
-                    newWavesurfer.play();
-                    currentPlaying = newWavesurfer;
+            newWs.on('ready', () => {
+                if (wasPlaying && resumeFilename === baseFilename) {
+                    newWs.setCurrentTime(currentTime);
+                    newWs.play();
+                    currentPlaying = newWs;
                 }
             });
 
-            newWavesurfer.on('play', () => {
+            newWs.on('play', () => {
                 iconOverlay.classList.remove('play');
                 iconOverlay.classList.add('pause');
             });
 
-            newWavesurfer.on('pause', () => {
+            newWs.on('pause', () => {
                 iconOverlay.classList.remove('pause');
                 iconOverlay.classList.add('play');
             });
 
-            newWavesurfer.on('finish', () => {
+            newWs.on('finish', () => {
                 iconOverlay.classList.remove('pause');
                 iconOverlay.classList.add('play');
                 currentPlaying = null;
             });
 
-            iconOverlay.classList.add('play');
-            players.find(p => p.baseFilename === baseFilename).wavesurfer = newWavesurfer;
+            players[i].wavesurfer = newWs;
+            players[i].currentFormat = newFormat;
         });
     });
 </script>
+
 
 
 
