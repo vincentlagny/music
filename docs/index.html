@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+    <script src="https://unpkg.com/wavesurfer.js"></script>
 </head>
 <body>
 <header>
@@ -68,12 +69,39 @@
         </div>
     </section>
 
+    <section class="track">
+        <img src="assets/covers/Dust.and.Silence.jpg" alt="ust.and.Silence" class="cover">
+
+        <div class="info">
+            <h2>Dust and Silence</h2>
+            <p><strong>“Dust and Silence”</strong> is a solitary piano ballad that drifts across forgotten lands and fading memories. Each note falls like a footstep in the dust — soft, uncertain, and slow.</p>
+            <p>This is music for the spaces in between, where absence speaks louder than presence, and where melancholy becomes a gentle companion to the wandering soul.</p>
+
+            <div id="waveform1" class="waveform"></div>
+            <button onclick="wavesurfer1.playPause()" class="play-btn">▶️ Play / Pause</button>
+        </div>
+    </section>
+
 </main>
 
 
 <footer>
     <p>&copy; 2025 Vincent Lagny – Version 1.04 - Musiques IA – Licence CC BY-NC-SA 4.0</p>
 </footer>
+
+<script>
+    const wavesurfer1 = WaveSurfer.create({
+        container: '#waveform1',
+        waveColor: '#999',
+        progressColor: '#ff7b54',
+        height: 80,
+        responsive: true,
+        barWidth: 2,
+        cursorColor: '#fff'
+    });
+
+    wavesurfer1.load('assets/audio/Dust.and.Silence.wav');
+</script>
 
 <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
 <script>
