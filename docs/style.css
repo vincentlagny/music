@@ -9,12 +9,12 @@ body {
 header {
     text-align: center;
     padding: 2em 1em;
-    background: radial-gradient(circle at top, #1a1a1a 0%, #0d0d0d 100%);
-    color: #cccccc;
+    background: linear-gradient(to right, #2b2d42, #3f4045);
+    color: #f1f1f1;
 }
 
 header h1 {
-    font-family: 'Open Sans', serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 2.5em;
     margin-bottom: 0.3em;
 }
@@ -93,7 +93,7 @@ footer {
 }
 
 .cover-container:hover {
-    box-shadow: 0 0 20px rgba(255, 175, 123, 0.5);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
 }
 
 .cover {
