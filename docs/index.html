@@ -91,7 +91,7 @@
 
 
 <footer>
-    <p>&copy; 2025 Vincent Lagny – Version 1.21 - Musiques IA – Licence CC BY-NC-SA 4.0</p>
+    <p>&copy; 2025 Vincent Lagny – Version 1.22 - Musiques IA – Licence CC BY-NC-SA 4.0</p>
 </footer>
 
 <script>
@@ -105,16 +105,15 @@
     qualityToggle.addEventListener('change', () => {
         isHiFi = qualityToggle.checked;
 
-        let currentTime = 0;
-        let resumeFilename = null;
+        // Stop toute lecture en cours
+        if (currentPlaying) {
+            currentPlaying.pause();
+            currentPlaying = null;
+        }
 
         players.forEach((player, i) => {
             const { wavesurfer, baseFilename, iconOverlay, trackElement } = player;
-            const wasPlaying = wavesurfer.isPlaying();
-            if (wasPlaying) {
-                currentTime = wavesurfer.getCurrentTime();
-                resumeFilename = baseFilename;
-            }
+            const currentTime = wavesurfer.getCurrentTime();
 
             wavesurfer.destroy();
 
@@ -150,11 +149,8 @@
             };
 
             newWs.on('ready', () => {
-                if (wasPlaying && resumeFilename === baseFilename) {
-                    newWs.setCurrentTime(currentTime);
-                    newWs.play();
-                    currentPlaying = newWs;
-                }
+                newWs.setCurrentTime(currentTime);
+                // Ne pas relancer la lecture automatiquement
             });
 
             newWs.on('play', () => {
