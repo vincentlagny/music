@@ -10,11 +10,14 @@
 <body>
 <header>
     <h1>St Vince</h1>
-    <p>Une collection de morceaux originaux, générés par un humain, avec passion et intelligence artificielle, à écouter librement.</p>
+    <p>A collection of original pieces, composed by a human with passion and the help of artificial intelligence - a musical reflection on climate change, free to listen and to feel.</p>
+
+    <button id="toggle-quality">🔊 Mode HiFi</button>
+
 </header>
 
 <main>
-    <section class="track" data-audio="assets/audio/Frozen.Echoes.wav">
+    <section class="track" data-audio="assets/audio/mp3/Frozen.Echoes.mp3">
         <div class="cover-container">
             <img src="assets/covers/Frozen.Echoes.png" alt="Frozen Echoes" class="cover" />
             <div class="icon-overlay play"></div>
@@ -29,7 +32,7 @@
         </div>
     </section>
 
-    <section class="track" data-audio="assets/audio/Dawn.of.the.Wild.wav">
+    <section class="track" data-audio="assets/audio/mp3/Dawn.of.the.Wild.mp3">
         <div class="cover-container">
             <img src="assets/covers/Dawn.of.the.Wild.png" alt="Dawn of the Wild" class="cover" />
             <div class="icon-overlay play"></div>
@@ -44,7 +47,7 @@
         </div>
     </section>
 
-    <section class="track" data-audio="assets/audio/Wings.Over.the.Fire.wav">
+    <section class="track" data-audio="assets/audio/mp3/Wings.Over.the.Fire.mp3">
         <div class="cover-container">
             <img src="assets/covers/Wings.Over.the.Fire.png" alt="Wings Over the Fire" class="cover" />
             <div class="icon-overlay play"></div>
@@ -62,7 +65,7 @@
     </section>
 
 
-    <section class="track" data-audio="assets/audio/Dust.and.Silence.wav">
+    <section class="track" data-audio="assets/audio/mp3/Dust.and.Silence.mp3">
         <div class="cover-container">
             <img src="assets/covers/Dust.and.Silence.png" alt="Dust and Silence" class="cover" />
             <div class="icon-overlay play"></div>
@@ -80,19 +83,27 @@
 
 
 <footer>
-    <p>&copy; 2025 Vincent Lagny – Version 1.10 - Musiques IA – Licence CC BY-NC-SA 4.0</p>
+    <p>&copy; 2025 Vincent Lagny – Version 1.12 - Musiques IA – Licence CC BY-NC-SA 4.0</p>
 </footer>
 
 <script>
     const tracks = document.querySelectorAll('.track');
     let currentPlaying = null;
+    let isHiFi = false;
+    const qualityBtn = document.getElementById('toggle-quality');
 
+    const players = [];
+
+    // Initialisation
     tracks.forEach((track) => {
         const container = track.querySelector('.waveform');
         const coverContainer = track.querySelector('.cover-container');
         const iconOverlay = track.querySelector('.icon-overlay');
-        const audioSrc = track.getAttribute('data-audio');
+        const baseFilename = track.getAttribute('data-audio')
+            .replace(/^assets\/audio\/mp3\//, '')  // ex: Wings.Over.the.Fire.mp3
+            .replace(/\.mp3$/, '');
 
+        // Crée le player
         const wavesurfer = WaveSurfer.create({
             container,
             waveColor: '#999',
@@ -103,23 +114,18 @@
             cursorColor: '#fff'
         });
 
-        wavesurfer.load(audioSrc);
+        wavesurfer.load(`assets/audio/mp3/${baseFilename}.mp3`);
 
         coverContainer.addEventListener('click', () => {
-            // Si un autre player est en cours de lecture, le mettre en pause
             if (currentPlaying && currentPlaying !== wavesurfer) {
                 currentPlaying.pause();
             }
-
             wavesurfer.playPause();
-
-            // Met à jour le lecteur actuellement actif
             if (wavesurfer.isPlaying()) {
                 currentPlaying = wavesurfer;
             }
         });
 
-        // Met à jour l’icône en fonction de l’état
         wavesurfer.on('play', () => {
             iconOverlay.classList.remove('play');
             iconOverlay.classList.add('pause');
@@ -135,8 +141,76 @@
             iconOverlay.classList.add('play');
             currentPlaying = null;
         });
+
+        // Sauvegarde pour basculement de qualité
+        players.push({
+            wavesurfer,
+            container,
+            iconOverlay,
+            baseFilename
+        });
+    });
+
+    // Changement de qualité (mp3 ↔ wav)
+    qualityBtn.addEventListener('click', () => {
+        isHiFi = !isHiFi;
+        qualityBtn.textContent = isHiFi ? '🎧 Mode Low-Fi' : '🔊 Mode HiFi';
+
+        let wasPlaying = null;
+
+        players.forEach(({ wavesurfer, baseFilename, iconOverlay }) => {
+            const currentTime = wavesurfer.getCurrentTime();
+            const playing = wavesurfer.isPlaying();
+
+            if (playing) {
+                wasPlaying = { wavesurfer, baseFilename, currentTime };
+            }
+
+            wavesurfer.destroy();
+
+            const newWavesurfer = WaveSurfer.create({
+                container: wavesurfer.container,
+                waveColor: '#999',
+                progressColor: '#ff7b54',
+                height: 80,
+                responsive: true,
+                barWidth: 2,
+                cursorColor: '#fff'
+            });
+
+            const extension = isHiFi ? 'wav' : 'mp3';
+            newWavesurfer.load(`assets/audio/${extension}/${baseFilename}.${extension}`);
+
+            newWavesurfer.on('ready', () => {
+                if (wasPlaying && wasPlaying.baseFilename === baseFilename) {
+                    newWavesurfer.setCurrentTime(wasPlaying.currentTime);
+                    newWavesurfer.play();
+                    currentPlaying = newWavesurfer;
+                }
+            });
+
+            newWavesurfer.on('play', () => {
+                iconOverlay.classList.remove('play');
+                iconOverlay.classList.add('pause');
+            });
+
+            newWavesurfer.on('pause', () => {
+                iconOverlay.classList.remove('pause');
+                iconOverlay.classList.add('play');
+            });
+
+            newWavesurfer.on('finish', () => {
+                iconOverlay.classList.remove('pause');
+                iconOverlay.classList.add('play');
+                currentPlaying = null;
+            });
+
+            iconOverlay.classList.add('play');
+            players.find(p => p.baseFilename === baseFilename).wavesurfer = newWavesurfer;
+        });
     });
 </script>
+
 
 
 <!-- Default Statcounter code for Music https://vincentlagny.github.io/music/
