@@ -287,12 +287,14 @@ input:checked + .slider:before {
 
 
 
+
 .minimal-header {
     background-color: #000;
     color: #fff;
-    padding: 1em 2em;
+    height: 80px; /* Hauteur fixe du bandeau */
+    padding: 0 2em;
     display: flex;
-    align-items: center;
+    align-items: center; /* Centre verticalement */
     font-family: 'Open Sans', sans-serif;
     border-bottom: 1px solid #222;
 }
@@ -310,6 +312,7 @@ input:checked + .slider:before {
 .text-block {
     display: flex;
     flex-direction: column;
+    align-items: flex-start; /* Aligne le texte à gauche */
 }
 
 .title {
@@ -321,4 +324,5 @@ input:checked + .slider:before {
 .subtitle {
     font-size: 0.85em;
     color: #aaa;
+    line-height: 1.2;
 }
