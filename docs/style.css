@@ -284,3 +284,41 @@ input:checked + .slider:before {
 .quality-button.web {
     background-color: #2196f3;
 }
+
+
+
+.minimal-header {
+    background-color: #000;
+    color: #fff;
+    padding: 1em 2em;
+    display: flex;
+    align-items: center;
+    font-family: 'Open Sans', sans-serif;
+    border-bottom: 1px solid #222;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5em;
+    margin-right: 0.8em;
+}
+
+.text-block {
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #fff;
+}
+
+.subtitle {
+    font-size: 0.85em;
+    color: #aaa;
+}
