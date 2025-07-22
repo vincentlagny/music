@@ -15,20 +15,20 @@
 </header>
 
 <main>
-    <section class="track">
+    <section class="track" data-audio="assets/audio/Frozen.Echoes.wav">
         <img src="assets/covers/Frozen.Echoes.png" alt="Frozen Echoes" class="cover">
         <div class="info">
             <h2>Frozen Echoes</h2>
-            <p><strong>“Echoes of Solitude”</strong> is a sonic tribute to polar landscapes and the ghostly fauna of our world.</p>
+            <p><strong>“Frozen Echoes”</strong> is a sonic tribute to polar landscapes and the ghostly fauna of our world.</p>
             <p>It is a music of space, silence, and remembrance.<br>
                 It speaks to the soul of those who still know how to listen to the cold.</p>
-            <audio id="player1" controls>
-                <source src="assets/audio/Frozen.Echoes.wav" type="audio/wav" />
-            </audio>
+
+            <div class="waveform"></div>
+            <button class="play-btn">▶️ Play / Pause</button>
         </div>
     </section>
 
-    <section class="track">
+    <section class="track" data-audio="assets/audio/Dawn.of.the.Wild.wav">
         <img src="assets/covers/Dawn.of.the.Wild.png" alt="Dawn of the Wild" class="cover">
         <div class="info">
             <h2>Dawn of the Wild</h2>
@@ -36,13 +36,13 @@
             <p>Amidst the moss and morning mist, a lone stag stands still — guardian of the rebirth, witness to the breath of spring returning.</p>
             <p>This is a music of renewal and quiet strength, where each note carries the scent of damp leaves, the promise of blooming, the pulse of life reborn.<br>
                 It speaks to the heart of those who still know how to listen to the woods.</p>
-            <audio id="player2" controls>
-                <source src="assets/audio/Dawn.of.the.Wild.wav" type="audio/wav" />
-            </audio>
+
+            <div class="waveform"></div>
+            <button class="play-btn">▶️ Play / Pause</button>
         </div>
     </section>
 
-    <section class="track">
+    <section class="track" data-audio="assets/audio/Wings.Over.the.Fire.wav">
         <img src="assets/covers/Wings.Over.the.Fire.png" alt="Wings Over the Fire" class="cover">
         <div class="info">
             <h2>Wings Over the Fire</h2>
@@ -51,34 +51,23 @@
             <p>Each piece evokes the fragility of life, the violence of collapse, and the strange serenity that exists at a distance from catastrophe.<br>
                 It is a music of soaring lines and trembling textures, of embers and silence, of grief and dignity.</p>
             <p>This is not a lament — but a vigil.</p>
-            <audio id="player3" controls>
-                <source src="assets/audio/Wings.Over.the.Fire.wav" type="audio/wav" />
-            </audio>
+
+            <div class="waveform"></div>
+            <button class="play-btn">▶️ Play / Pause</button>
         </div>
     </section>
 
-    <section class="track">
-        <img src="assets/covers/Dust.and.Silence.png" alt="Dust and Silence" class="cover">
-        <div class="info">
-            <h2>Dust and Silence</h2>
-            <p><strong>“Dust and Silence”</strong> is a solitary piano ballad that drifts across forgotten lands and fading memories. Each note falls like a footstep in the dust — soft, uncertain, and slow.</p>
-            <p>This is music for the spaces in between, where absence speaks louder than presence, and where melancholy becomes a gentle companion to the wandering soul.</p>
-            <audio id="player4" controls>
-                <source src="assets/audio/Dust.and.Silence.wav" type="audio/wav" />
-            </audio>
-        </div>
-    </section>
 
-    <section class="track">
-        <img src="assets/covers/Dust.and.Silence.jpg" alt="ust.and.Silence" class="cover">
+    <section class="track" data-audio="assets/audio/Dust.and.Silence.wav">
+        <img src="assets/covers/Dust.and.Silence.png" alt="Dust.and.Silence" class="cover">
 
         <div class="info">
             <h2>Dust and Silence</h2>
             <p><strong>“Dust and Silence”</strong> is a solitary piano ballad that drifts across forgotten lands and fading memories. Each note falls like a footstep in the dust — soft, uncertain, and slow.</p>
             <p>This is music for the spaces in between, where absence speaks louder than presence, and where melancholy becomes a gentle companion to the wandering soul.</p>
 
-            <div id="waveform1" class="waveform"></div>
-            <button onclick="wavesurfer1.playPause()" class="play-btn">▶️ Play / Pause</button>
+            <div class="waveform"></div>
+            <button class="play-btn">▶️ Play / Pause</button>
         </div>
     </section>
 
@@ -86,21 +75,33 @@
 
 
 <footer>
-    <p>&copy; 2025 Vincent Lagny – Version 1.04 - Musiques IA – Licence CC BY-NC-SA 4.0</p>
+    <p>&copy; 2025 Vincent Lagny – Version 1.06 - Musiques IA – Licence CC BY-NC-SA 4.0</p>
 </footer>
 
 <script>
-    const wavesurfer1 = WaveSurfer.create({
-        container: '#waveform1',
-        waveColor: '#999',
-        progressColor: '#ff7b54',
-        height: 80,
-        responsive: true,
-        barWidth: 2,
-        cursorColor: '#fff'
-    });
+    const tracks = document.querySelectorAll('.track');
 
-    wavesurfer1.load('assets/audio/Dust.and.Silence.wav');
+    tracks.forEach((track, index) => {
+        const container = track.querySelector('.waveform');
+        const playButton = track.querySelector('.play-btn');
+        const audioSrc = track.getAttribute('data-audio');
+
+        const wavesurfer = WaveSurfer.create({
+            container,
+            waveColor: '#999',
+            progressColor: '#ff7b54',
+            height: 80,
+            responsive: true,
+            barWidth: 2,
+            cursorColor: '#fff'
+        });
+
+        wavesurfer.load(audioSrc);
+
+        playButton.addEventListener('click', () => {
+            wavesurfer.playPause();
+        });
+    });
 </script>
 
 <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
