@@ -9,32 +9,65 @@
 </head>
 <body>
 <header>
-    <h1>🎶 Musiques générées par IA</h1>
-    <p>Une collection de morceaux originaux, générés par intelligence artificielle, à écouter librement.</p>
+    <h1>🎶 St Vince</h1>
+    <p>Une collection de morceaux originaux, générés par un humain, avec passion et intelligence artificielle, à écouter librement.</p>
 </header>
 
 <main>
     <section class="track">
-        <img src="assets/covers/Dawn.of.the.Wild.png" alt="Couverture Aube synthétique" class="cover">
+        <img src="assets/covers/Frozen.Echoes.png" alt="Frozen Echoes" class="cover">
         <div class="info">
-            <h2>🌅 Aube synthétique</h2>
-            <p>Un lever de soleil numérique pour piano et cordes.</p>
+            <h2>Frozen Echoes</h2>
+            <p><strong>“Echoes of Solitude”</strong> is a sonic tribute to polar landscapes and the ghostly fauna of our world.</p>
+            <p>It is a music of space, silence, and remembrance.<br>
+                It speaks to the soul of those who still know how to listen to the cold.</p>
             <audio id="player1" controls>
+                <source src="assets/audio/Frozen.Echoes.mp3" type="audio/mp3" />
+            </audio>
+        </div>
+    </section>
+
+    <section class="track">
+        <img src="assets/covers/Dawn.of.the.Wild.png" alt="Dawn of the Wild" class="cover">
+        <div class="info">
+            <h2>Dawn of the Wild</h2>
+            <p><strong>“Dawn of the Wild”</strong> is a musical ode to the forest awakening from its long slumber. Written for piano, violin, and cello, it captures the hush before the first light, when the earth exhales and life stirs again.</p>
+            <p>Amidst the moss and morning mist, a lone stag stands still — guardian of the rebirth, witness to the breath of spring returning.</p>
+            <p>This is a music of renewal and quiet strength, where each note carries the scent of damp leaves, the promise of blooming, the pulse of life reborn.<br>
+                It speaks to the heart of those who still know how to listen to the woods.</p>
+            <audio id="player2" controls>
                 <source src="assets/audio/Dawn.of.the.Wild.mp3" type="audio/mp3" />
             </audio>
         </div>
     </section>
 
     <section class="track">
-        <img src="assets/covers/Frozen.Echoes.jpg" alt="Couverture Forêt en flammes" class="cover">
+        <img src="assets/covers/Wings.Over.the.Fire.png" alt="Wings Over the Fire" class="cover">
         <div class="info">
-            <h2>🔥 Forêt en flammes</h2>
-            <p>Une envolée dramatique portée par des violons et un aigle.</p>
-            <audio id="player2" controls>
-                <source src="assets/audio/Frozen.Echoes.mp3" type="audio/mp3" />
+            <h2>Wings Over the Fire</h2>
+            <p><strong>“Wings Over the Fire”</strong> is a sonic journey through destruction and grace.</p>
+            <p>Composed for piano, violin, and cello, this album tells the story of a burning forest seen not from within the flames, but from above — from the steady, gliding perspective of an eagle in flight.</p>
+            <p>Each piece evokes the fragility of life, the violence of collapse, and the strange serenity that exists at a distance from catastrophe.<br>
+                It is a music of soaring lines and trembling textures, of embers and silence, of grief and dignity.</p>
+            <p>This is not a lament — but a vigil.</p>
+            <audio id="player3" controls>
+                <source src="assets/audio/Wings.Over.the.Fire.mp3" type="audio/mp3" />
             </audio>
         </div>
     </section>
+
+    <section class="track">
+        <img src="assets/covers/Dust.and.Silence.png" alt="Dust and Silence" class="cover">
+        <div class="info">
+            <h2>Dust and Silence</h2>
+            <p><strong>“Dust and Silence”</strong> is a solitary piano ballad that drifts across forgotten lands and fading memories. Each note falls like a footstep in the dust — soft, uncertain, and slow.</p>
+            <p>This is music for the spaces in between, where absence speaks louder than presence, and where melancholy becomes a gentle companion to the wandering soul.</p>
+            <audio id="player4" controls>
+                <source src="assets/audio/Dust.and.Silence.wav" type="audio/wav" />
+            </audio>
+        </div>
+    </section>
+
 </main>
 
 
@@ -46,6 +79,8 @@
 <script>
     new Plyr('#player1');
     new Plyr('#player2');
+    new Plyr('#player3');
+    new Plyr('#player4');
     // Répète pour d'autres players si besoin
 </script>
 </body>
