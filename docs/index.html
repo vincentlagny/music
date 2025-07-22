@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>🎵 Musiques IA – Écoute libre</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+</head>
+<body>
+<header>
+    <h1>🎶 Musiques générées par IA</h1>
+    <p>Une collection de morceaux originaux, générés par intelligence artificielle, à écouter librement.</p>
+</header>
+
+<main>
+    <section class="track">
+        <img src="assets/covers/Dawn.of.the.Wild.png" alt="Couverture Aube synthétique" class="cover">
+        <div class="info">
+            <h2>🌅 Aube synthétique</h2>
+            <p>Un lever de soleil numérique pour piano et cordes.</p>
+            <audio id="player1" controls>
+                <source src="assets/audio/Dawn.of.the.Wild.mp3" type="audio/mp3" />
+            </audio>
+        </div>
+    </section>
+
+    <section class="track">
+        <img src="assets/covers/Frozen.Echoes.jpg" alt="Couverture Forêt en flammes" class="cover">
+        <div class="info">
+            <h2>🔥 Forêt en flammes</h2>
+            <p>Une envolée dramatique portée par des violons et un aigle.</p>
+            <audio id="player2" controls>
+                <source src="assets/audio/Frozen.Echoes.mp3" type="audio/mp3" />
+            </audio>
+        </div>
+    </section>
+</main>
+
+
+<footer>
+    <p>&copy; 2025 Vincent Lagny – Musiques IA – Licence CC BY-NC-SA 4.0</p>
+</footer>
+
+<script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
+<script>
+    new Plyr('#player1');
+    new Plyr('#player2');
+    // Répète pour d'autres players si besoin
+</script>
+</body>
+</html>
