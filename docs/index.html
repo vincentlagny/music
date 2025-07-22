@@ -91,7 +91,7 @@
 
 
 <footer>
-    <p>&copy; 2025 Vincent Lagny – Version 1.19 - Musiques IA – Licence CC BY-NC-SA 4.0</p>
+    <p>&copy; 2025 Vincent Lagny – Version 1.20 - Musiques IA – Licence CC BY-NC-SA 4.0</p>
 </footer>
 
 <script>
@@ -100,15 +100,10 @@
     let currentPlaying = null;
     let isHiFi = false;
 
-    const qualityButton = document.getElementById('toggle-quality');
-    qualityButton.classList.add('hifi');
-    qualityButton.textContent = '🎧 HiFi';
+    const qualityToggle = document.getElementById('toggle-quality');
 
-    qualityButton.addEventListener('click', () => {
-        isHiFi = !isHiFi;
-        qualityButton.textContent = isHiFi ? '🎧 HiFi' : '🌐 Web';
-        qualityButton.classList.toggle('hifi', isHiFi);
-        qualityButton.classList.toggle('web', !isHiFi);
+    qualityToggle.addEventListener('change', () => {
+        isHiFi = qualityToggle.checked;
 
         let currentTime = 0;
         let resumeFilename = null;
@@ -142,6 +137,18 @@
             const filePath = `assets/audio/${newFormat}/${baseFilename}.${newFormat}`;
             newWs.load(filePath);
 
+            const coverContainer = trackElement.querySelector('.cover-container');
+
+            coverContainer.onclick = () => {
+                if (currentPlaying && currentPlaying !== newWs) {
+                    currentPlaying.pause();
+                }
+                newWs.playPause();
+                if (newWs.isPlaying()) {
+                    currentPlaying = newWs;
+                }
+            };
+
             newWs.on('ready', () => {
                 if (wasPlaying && resumeFilename === baseFilename) {
                     newWs.setCurrentTime(currentTime);
@@ -170,7 +177,7 @@
         });
     });
 
-    // Initialisation des lecteurs
+    // Initialisation
     tracks.forEach((track) => {
         const container = track.querySelector('.waveform');
         const coverContainer = track.querySelector('.cover-container');
@@ -193,7 +200,7 @@
 
         wavesurfer.load(`assets/audio/${currentFormat}/${baseFilename}.${currentFormat}`);
 
-        coverContainer.addEventListener('click', () => {
+        coverContainer.onclick = () => {
             if (currentPlaying && currentPlaying !== wavesurfer) {
                 currentPlaying.pause();
             }
@@ -201,7 +208,7 @@
             if (wavesurfer.isPlaying()) {
                 currentPlaying = wavesurfer;
             }
-        });
+        };
 
         wavesurfer.on('play', () => {
             iconOverlay.classList.remove('play');
