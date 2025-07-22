@@ -5,7 +5,6 @@
     <title>🎵 Musiques IA – Écoute libre</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
     <script src="https://unpkg.com/wavesurfer.js"></script>
 </head>
 <body>
@@ -16,7 +15,10 @@
 
 <main>
     <section class="track" data-audio="assets/audio/Frozen.Echoes.wav">
-        <img src="assets/covers/Frozen.Echoes.png" alt="Frozen Echoes" class="cover">
+        <div class="cover-container">
+            <img src="assets/covers/Frozen Echoes.png" alt="Frozen.Echoes" class="cover" />
+            <div class="icon-overlay play"></div>
+        </div>
         <div class="info">
             <h2>Frozen Echoes</h2>
             <p><strong>“Frozen Echoes”</strong> is a sonic tribute to polar landscapes and the ghostly fauna of our world.</p>
@@ -29,8 +31,10 @@
     </section>
 
     <section class="track" data-audio="assets/audio/Dawn.of.the.Wild.wav">
-        <img src="assets/covers/Dawn.of.the.Wild.png" alt="Dawn of the Wild" class="cover">
-        <div class="info">
+        <div class="cover-container">
+            <img src="assets/covers/Dawn.of.the.Wild.png" alt="Dawn of the Wild" class="cover" />
+            <div class="icon-overlay play"></div>
+        </div>        <div class="info">
             <h2>Dawn of the Wild</h2>
             <p><strong>“Dawn of the Wild”</strong> is a musical ode to the forest awakening from its long slumber. Written for piano, violin, and cello, it captures the hush before the first light, when the earth exhales and life stirs again.</p>
             <p>Amidst the moss and morning mist, a lone stag stands still — guardian of the rebirth, witness to the breath of spring returning.</p>
@@ -43,7 +47,10 @@
     </section>
 
     <section class="track" data-audio="assets/audio/Wings.Over.the.Fire.wav">
-        <img src="assets/covers/Wings.Over.the.Fire.png" alt="Wings Over the Fire" class="cover">
+        <div class="cover-container">
+            <img src="assets/covers/Wings.Over.the.Fire.png" alt="Wings Over the Fire" class="cover" />
+            <div class="icon-overlay play"></div>
+        </div>
         <div class="info">
             <h2>Wings Over the Fire</h2>
             <p><strong>“Wings Over the Fire”</strong> is a sonic journey through destruction and grace.</p>
@@ -59,8 +66,10 @@
 
 
     <section class="track" data-audio="assets/audio/Dust.and.Silence.wav">
-        <img src="assets/covers/Dust.and.Silence.png" alt="Dust.and.Silence" class="cover">
-
+        <div class="cover-container">
+            <img src="assets/covers/Dust.and.Silence.png" alt="Dust and Silence" class="cover" />
+            <div class="icon-overlay play"></div>
+        </div>
         <div class="info">
             <h2>Dust and Silence</h2>
             <p><strong>“Dust and Silence”</strong> is a solitary piano ballad that drifts across forgotten lands and fading memories. Each note falls like a footstep in the dust — soft, uncertain, and slow.</p>
@@ -75,15 +84,16 @@
 
 
 <footer>
-    <p>&copy; 2025 Vincent Lagny – Version 1.06 - Musiques IA – Licence CC BY-NC-SA 4.0</p>
+    <p>&copy; 2025 Vincent Lagny – Version 1.07 - Musiques IA – Licence CC BY-NC-SA 4.0</p>
 </footer>
 
 <script>
     const tracks = document.querySelectorAll('.track');
 
-    tracks.forEach((track, index) => {
+    tracks.forEach((track) => {
         const container = track.querySelector('.waveform');
-        const playButton = track.querySelector('.play-btn');
+        const coverContainer = track.querySelector('.cover-container');
+        const iconOverlay = track.querySelector('.icon-overlay');
         const audioSrc = track.getAttribute('data-audio');
 
         const wavesurfer = WaveSurfer.create({
@@ -98,19 +108,27 @@
 
         wavesurfer.load(audioSrc);
 
-        playButton.addEventListener('click', () => {
+        coverContainer.addEventListener('click', () => {
             wavesurfer.playPause();
+        });
+
+        wavesurfer.on('play', () => {
+            iconOverlay.classList.remove('play');
+            iconOverlay.classList.add('pause');
+        });
+
+        wavesurfer.on('pause', () => {
+            iconOverlay.classList.remove('pause');
+            iconOverlay.classList.add('play');
+        });
+
+        wavesurfer.on('finish', () => {
+            iconOverlay.classList.remove('pause');
+            iconOverlay.classList.add('play');
         });
     });
 </script>
 
-<script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
-<script>
-    new Plyr('#player1');
-    new Plyr('#player2');
-    new Plyr('#player3');
-    new Plyr('#player4');
-    // Répète pour d'autres players si besoin
-</script>
+
 </body>
 </html>
