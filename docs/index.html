@@ -356,15 +356,7 @@
         player.on('finish', () => updatePlayPauseIcon(false));
     }
 
-    document.getElementById('play-pause-toggle').addEventListener('click', () => {
-        if (!currentPlaying) return;
 
-        if (currentPlaying.isPlaying()) {
-            currentPlaying.pause();
-        } else {
-            currentPlaying.play();
-        }
-    });
 
 
     ////////////////////////////// ⏭️ Bouton Next

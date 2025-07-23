@@ -397,11 +397,13 @@ input:checked + .slider:before {
     right: 10px;
     background: rgba(255, 255, 255, 0.7);
     border-radius: 8px;
-    padding: 4px 8px;
+    padding: 6px 8px;
     display: flex;
+    flex-direction: column; /* 🔁 important pour empiler verticalement */
     align-items: center;
     gap: 6px;
     z-index: 1000;
+    width: 160px; /* largeur fixe ou ajustable selon ton design */
 }
 
 #volume-control button {
@@ -432,3 +434,16 @@ input:checked + .slider:before {
     fill: #333;
 }
 
+#now-playing-cover {
+    width: 100%;
+    aspect-ratio: 1 / 1; /* carré automatique */
+    overflow: hidden;
+    border-radius: 6px;
+}
+
+#now-playing-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 6px;
+}
