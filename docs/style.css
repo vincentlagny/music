@@ -395,7 +395,7 @@ input:checked + .slider:before {
     position: fixed;
     bottom: 10px;
     right: 10px;
-    background: rgba(255, 255, 255, 0.7);
+    background: rgba(100, 100, 100, 0.3);
     border-radius: 8px;
     padding: 8px;
     width: 240px;
@@ -443,15 +443,6 @@ input:checked + .slider:before {
     opacity: 1;
     fill: #333;
 }
-
-#volume-control button:hover {
-    background-color: rgba(255, 0, 255, 0.2); /* zone de test */
-}
-
-#volume-control button {
-    outline: 1px solid red;
-}
-
 
 /* Pochette en haut */
 #now-playing-cover {
