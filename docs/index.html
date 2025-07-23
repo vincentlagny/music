@@ -293,9 +293,18 @@
 
     // Mises à jour visuelles
     function updatePlayPauseIcon(isPlaying) {
-        playIcon.style.display = isPlaying ? 'none' : '';
-        pauseIcon.style.display = isPlaying ? '' : 'none';
+        const playIcon = document.getElementById('play-icon');
+        const pauseIcon = document.getElementById('pause-icon');
+
+        if (isPlaying) {
+            playIcon.style.display = 'none';
+            pauseIcon.style.display = '';
+        } else {
+            playIcon.style.display = '';
+            pauseIcon.style.display = 'none';
+        }
     }
+
 
     // Met à jour l’icône à chaque changement d’état
     function attachPlayPauseIconUpdates(player) {
@@ -303,6 +312,17 @@
         player.on('pause', () => updatePlayPauseIcon(false));
         player.on('finish', () => updatePlayPauseIcon(false));
     }
+
+    document.getElementById('play-pause-toggle').addEventListener('click', () => {
+        if (!currentPlaying) return;
+
+        if (currentPlaying.isPlaying()) {
+            currentPlaying.pause();
+        } else {
+            currentPlaying.play();
+        }
+    });
+
 
     ////////////////////////////// ⏭️ Bouton Next
     document.getElementById('next-track').addEventListener('click', () => {
