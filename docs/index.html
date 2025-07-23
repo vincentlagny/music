@@ -33,6 +33,21 @@
         </svg>
     </button>
 
+    <!-- Bouton Play/Pause -->
+    <button id="play-pause-toggle" title="Play / Pause">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="#888">
+            <path id="play-icon" d="M8 5v14l11-7z"/>
+            <path id="pause-icon" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" style="display: none"/>
+        </svg>
+    </button>
+
+    <!-- Bouton Next -->
+    <button id="next-track" title="Next track">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="#888">
+            <path d="M7 6v12l8.5-6L7 6zm9 0v12h2V6h-2z"/>
+        </svg>
+    </button>
+
     <button id="loop-toggle" title="Loop mode" aria-label="Loop mode">
         <svg id="loop-icon" viewBox="0 0 24 24" width="24" height="24" fill="#888">
             <path d="M7 7h9v2l3-3-3-3v2H6c-1.1 0-2 .9-2 2v4h2V7z"/>
@@ -203,6 +218,7 @@
         });
     }
 
+    ////////////////////////////// GESTION DE LA LANGUE
     function setLanguage(lang) {
         localStorage.setItem('lang', lang);
         renderTracks(lang);
@@ -217,6 +233,7 @@
         setLanguage(lang);
     });
 
+    ////////////////////////////// VERSION ET PIED DE PAGE
     fetch('version.json')
         .then(res => res.json())
         .then(data => {
@@ -233,7 +250,7 @@
     });
 
 
-    // Références des nouveaux boutons globaux
+    ////////////////////////////// Bouton LOOP
     const rewindBtn = document.getElementById('rewind-global');
 
     let loopCurrentTrack = false;
@@ -259,6 +276,47 @@
         loopToggleBtn.classList.toggle('active', loopMode > 0);
     });
 
+
+    ////////////////////////////// ⏯️ Bouton Play / Pause global
+    const playPauseBtn = document.getElementById('play-pause-toggle');
+    const playIcon = playPauseBtn.querySelector('#play-icon');
+    const pauseIcon = playPauseBtn.querySelector('#pause-icon');
+
+    playPauseBtn.addEventListener('click', () => {
+        if (!currentPlaying) return;
+        if (currentPlaying.isPlaying()) {
+            currentPlaying.pause();
+        } else {
+            currentPlaying.play();
+        }
+    });
+
+    // Mises à jour visuelles
+    function updatePlayPauseIcon(isPlaying) {
+        playIcon.style.display = isPlaying ? 'none' : '';
+        pauseIcon.style.display = isPlaying ? '' : 'none';
+    }
+
+    // Met à jour l’icône à chaque changement d’état
+    function attachPlayPauseIconUpdates(player) {
+        player.on('play', () => updatePlayPauseIcon(true));
+        player.on('pause', () => updatePlayPauseIcon(false));
+        player.on('finish', () => updatePlayPauseIcon(false));
+    }
+
+    ////////////////////////////// ⏭️ Bouton Next
+    document.getElementById('next-track').addEventListener('click', () => {
+        if (!currentPlaying) return;
+
+        const currentIndex = players.findIndex(p => p.wavesurfer === currentPlaying);
+        const nextIndex = (currentIndex + 1) % players.length;
+        const nextPlayer = players[nextIndex].wavesurfer;
+
+        currentPlaying.pause();
+        nextPlayer.seekTo(0);
+        nextPlayer.play();
+        currentPlaying = nextPlayer;
+    });
 
 
     const volumeSlider = document.getElementById('volume-slider');
