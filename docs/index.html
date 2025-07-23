@@ -17,6 +17,10 @@
             <div class="subtitle">Original music with a human soul and an AI spark</div>
         </div>
     </div>
+    <div class="language-switch">
+        <button onclick="setLanguage('fr')">🇫🇷 FR</button>
+        <button onclick="setLanguage('en')">🇬🇧 EN</button>
+    </div>
 </header>
 
 <main>
@@ -26,10 +30,10 @@
             <div class="icon-overlay play"></div>
         </div>
         <div class="info">
-            <h2>Frozen Echoes</h2>
-            <p><strong>“Frozen Echoes”</strong> is a sonic tribute to polar landscapes and the ghostly fauna of our world.</p>
-            <p>It is a music of space, silence, and remembrance.<br>
-                It speaks to the soul of those who still know how to listen to the cold.</p>
+
+            <h2 data-i18n="title_frozen">Frozen Echoes</h2>
+            <p><strong data-i18n="desc1_frozen">“Frozen Echoes” is a sonic tribute to polar landscapes and the ghostly fauna of our world.</strong></p>
+            <p data-i18n="desc2_frozen">It is a music of space, silence, and remembrance.<br>It speaks to the soul of those who still know how to listen to the cold.</p>
 
             <div class="waveform"></div>
             <p>
@@ -100,7 +104,7 @@
 
 
 <footer>
-    <p>&copy; 2025 Vincent Lagny – Version 1.27 - Musiques IA – Licence CC BY-NC-SA 4.0</p>
+    <p>&copy; 2025 Vincent Lagny – Version 1.28 - Musiques IA – Licence CC BY-NC-SA 4.0</p>
 </footer>
 
 <script>
@@ -169,11 +173,34 @@
 </script>
 
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const video = document.querySelector('header video');
-        if (video) {
-            video.playbackRate = 0.5; // 0.5 = deux fois plus lent, 2.0 = deux fois plus rapide
+    const translations = {
+        fr: {
+            title_frozen: "Échos Gelés",
+            desc1_frozen: "« Échos Gelés » est un hommage sonore aux paysages polaires et à la faune fantomatique de notre monde.",
+            desc2_frozen: "C’est une musique d’espace, de silence et de mémoire.<br>Elle parle à ceux qui savent encore écouter le froid.",
+            // Ajoute les autres textes ici
+        },
+        en: {
+            title_frozen: "Frozen Echoes",
+            desc1_frozen: "“Frozen Echoes” is a sonic tribute to polar landscapes and the ghostly fauna of our world.",
+            desc2_frozen: "It is a music of space, silence, and remembrance.<br>It speaks to the soul of those who still know how to listen to the cold.",
+            // Ajoute les autres textes ici
         }
+    };
+
+    function setLanguage(lang) {
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (translations[lang] && translations[lang][key]) {
+                el.innerHTML = translations[lang][key];
+            }
+        });
+        localStorage.setItem('lang', lang);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const lang = localStorage.getItem('lang') || 'en';
+        setLanguage(lang);
     });
 </script>
 
