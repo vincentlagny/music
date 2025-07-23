@@ -32,6 +32,10 @@
                 It speaks to the soul of those who still know how to listen to the cold.</p>
 
             <div class="waveform"></div>
+            <p>
+                <a href="assets/audio/wav/Frozen.Echoes.wav" download class="hifi-link">⬇️ Télécharger en qualité HiFi (.wav)</a>
+            </p>
+
         </div>
     </section>
 
@@ -39,7 +43,8 @@
         <div class="cover-container">
             <img src="assets/covers/Dawn.of.the.Wild.png" alt="Dawn of the Wild" class="cover" />
             <div class="icon-overlay play"></div>
-        </div>        <div class="info">
+        </div>
+        <div class="info">
             <h2>Dawn of the Wild</h2>
             <p><strong>“Dawn of the Wild”</strong> is a musical ode to the forest awakening from its long slumber. Written for piano, violin, and cello, it captures the hush before the first light, when the earth exhales and life stirs again.</p>
             <p>Amidst the moss and morning mist, a lone stag stands still — guardian of the rebirth, witness to the breath of spring returning.</p>
@@ -47,6 +52,9 @@
                 It speaks to the heart of those who still know how to listen to the woods.</p>
 
             <div class="waveform"></div>
+            <p>
+                <a href="assets/audio/wav/Frozen.Echoes.wav" download class="hifi-link">⬇️ Télécharger en qualité HiFi (.wav)</a>
+            </p>
         </div>
     </section>
 
@@ -64,6 +72,9 @@
             <p>This is not a lament — but a vigil.</p>
 
             <div class="waveform"></div>
+            <p>
+                <a href="assets/audio/wav/Frozen.Echoes.wav" download class="hifi-link">⬇️ Télécharger en qualité HiFi (.wav)</a>
+            </p>
         </div>
     </section>
 
@@ -79,6 +90,9 @@
             <p>This is music for the spaces in between, where absence speaks louder than presence, and where melancholy becomes a gentle companion to the wandering soul.</p>
 
             <div class="waveform"></div>
+            <p>
+                <a href="assets/audio/wav/Frozen.Echoes.wav" download class="hifi-link">⬇️ Télécharger en qualité HiFi (.wav)</a>
+            </p>
         </div>
     </section>
 
@@ -86,16 +100,7 @@
 
 
 <footer>
-    <div class="switch-wrapper">
-        <span class="label-left">🌐 Web</span>
-        <label class="toggle-switch">
-            <input type="checkbox" id="toggle-quality" />
-            <span class="slider"></span>
-        </label>
-        <span class="label-right">🎧 HiFi</span>
-    </div>
-
-    <p>&copy; 2025 Vincent Lagny – Version 1.26 - Musiques IA – Licence CC BY-NC-SA 4.0</p>
+    <p>&copy; 2025 Vincent Lagny – Version 1.27 - Musiques IA – Licence CC BY-NC-SA 4.0</p>
 </footer>
 
 <script>
@@ -103,79 +108,6 @@
     const players = [];
     let currentPlaying = null;
     let isHiFi = false;
-
-    const qualityToggle = document.getElementById('toggle-quality');
-
-    qualityToggle.addEventListener('change', () => {
-        isHiFi = qualityToggle.checked;
-
-        // Stop toute lecture en cours
-        if (currentPlaying) {
-            currentPlaying.pause();
-            currentPlaying = null;
-        }
-
-        players.forEach((player, i) => {
-            const { wavesurfer, baseFilename, iconOverlay, trackElement } = player;
-            const currentTime = wavesurfer.getCurrentTime();
-
-            wavesurfer.destroy();
-
-            const oldContainer = trackElement.querySelector('.waveform');
-            const newContainer = document.createElement('div');
-            newContainer.className = 'waveform';
-            oldContainer.replaceWith(newContainer);
-
-            const newFormat = isHiFi ? 'wav' : 'mp3';
-            const newWs = WaveSurfer.create({
-                container: newContainer,
-                waveColor: '#999',
-                progressColor: '#ff7b54',
-                height: 80,
-                responsive: true,
-                barWidth: 2,
-                cursorColor: '#fff'
-            });
-
-            const filePath = `assets/audio/${newFormat}/${baseFilename}.${newFormat}`;
-            newWs.load(filePath);
-
-            const coverContainer = trackElement.querySelector('.cover-container');
-
-            coverContainer.onclick = () => {
-                if (currentPlaying && currentPlaying !== newWs) {
-                    currentPlaying.pause();
-                }
-                newWs.playPause();
-                if (newWs.isPlaying()) {
-                    currentPlaying = newWs;
-                }
-            };
-
-            newWs.on('ready', () => {
-                newWs.setCurrentTime(currentTime);
-                // Ne pas relancer la lecture automatiquement
-            });
-
-            newWs.on('play', () => {
-                iconOverlay.classList.remove('play');
-                iconOverlay.classList.add('pause');
-            });
-
-            newWs.on('pause', () => {
-                iconOverlay.classList.remove('pause');
-                iconOverlay.classList.add('play');
-            });
-
-            newWs.on('finish', () => {
-                iconOverlay.classList.remove('pause');
-                iconOverlay.classList.add('play');
-                currentPlaying = null;
-            });
-
-            players[i].wavesurfer = newWs;
-        });
-    });
 
     // Initialisation
     tracks.forEach((track) => {

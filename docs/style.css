@@ -326,3 +326,15 @@ input:checked + .slider:before {
     color: #aaa;
     line-height: 1.2;
 }
+
+.hifi-link {
+    display: inline-block;
+    margin-top: 0.5em;
+    color: #ffa;
+    text-decoration: none;
+    font-size: 0.9em;
+}
+.hifi-link:hover {
+    text-decoration: underline;
+    color: #fff;
+}
