@@ -33,17 +33,10 @@
         </svg>
     </button>
 
-    <button id="loop-track" title="Loop current track" aria-label="Loop current track">
-        <svg viewBox="0 0 24 24" width="24" height="24" fill="#888" class="icon-loop">
+    <button id="loop-toggle" title="Loop mode" aria-label="Loop mode">
+        <svg id="loop-icon" viewBox="0 0 24 24" width="24" height="24" fill="#888">
             <path d="M7 7h9v2l3-3-3-3v2H6c-1.1 0-2 .9-2 2v4h2V7z"/>
-            <text x="17" y="21" font-size="8" fill="#888">1</text>
-        </svg>
-    </button>
-
-    <button id="loop-all" title="Loop all tracks"  aria-label="Loop all tracks">
-        <svg viewBox="0 0 24 24" width="24" height="24" fill="#888" class="icon-loop-all">
-            <path d="M7 7h9v2l3-3-3-3v2H6c-1.1 0-2 .9-2 2v4h2V7z"/>
-            <text x="15" y="21" font-size="8" fill="#888">∞</text>
+            <text id="loop-label" x="15" y="21" font-size="8" fill="#888">0</text>
         </svg>
     </button>
 
@@ -58,7 +51,7 @@
 </div>
 
 <footer>
-    <p>&copy; 2025 Vincent Lagny – Version 1.35 – Licence CC BY-NC-SA 4.0</p>
+    <p id="footer-info" style="opacity: 0.5;">Version en cours de chargement…</p>
 </footer>
 
 <script>
@@ -224,6 +217,14 @@
         setLanguage(lang);
     });
 
+    fetch('version.json')
+        .then(res => res.json())
+        .then(data => {
+            const footer = document.getElementById('footer-info');
+            const version = data.version || 'x.x';
+            const date = data.buildDate ? ` (${data.buildDate})` : '';
+            footer.textContent = `© 2025 Vincent Lagny – Version ${version}${date} – Licence CC BY-NC-SA 4.0`;
+        });
 
     document.getElementById('rewind-global').addEventListener('click', () => {
         if (currentPlaying) {
@@ -234,8 +235,6 @@
 
     // Références des nouveaux boutons globaux
     const rewindBtn = document.getElementById('rewind-global');
-    const loopTrackBtn = document.getElementById('loop-track');
-    const loopAllBtn = document.getElementById('loop-all');
 
     let loopCurrentTrack = false;
     let loopAllTracks = false;
@@ -246,14 +245,18 @@
         }
     });
 
-    loopTrackBtn.addEventListener('click', () => {
-        loopCurrentTrack = !loopCurrentTrack;
-        loopTrackBtn.classList.toggle('active', loopCurrentTrack);
-    });
+    const loopToggleBtn = document.getElementById('loop-toggle');
+    const loopIconLabel = document.getElementById('loop-label');
+    let loopMode = 0; // 0 = no loop, 1 = loop current, 2 = loop all
 
-    loopAllBtn.addEventListener('click', () => {
-        loopAllTracks = !loopAllTracks;
-        loopAllBtn.classList.toggle('active', loopAllTracks);
+    loopToggleBtn.addEventListener('click', () => {
+        loopMode = (loopMode + 1) % 3;
+
+        // Mise à jour visuelle
+        loopIconLabel.textContent = loopMode === 0 ? '0' : (loopMode === 1 ? '1' : '∞');
+
+        // Style actif
+        loopToggleBtn.classList.toggle('active', loopMode > 0);
     });
 
 
