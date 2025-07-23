@@ -27,7 +27,7 @@
 <main id="content"></main>
 
 <footer>
-    <p>&copy; 2025 Vincent Lagny – Version 1.32a – Licence CC BY-NC-SA 4.0</p>
+    <p>&copy; 2025 Vincent Lagny – Version 1.33 – Licence CC BY-NC-SA 4.0</p>
 </footer>
 
 <script>
@@ -127,6 +127,7 @@
                 cursorColor: '#fff'
             });
 
+            wavesurfer.setVolume(parseFloat(volumeSlider.value));
             wavesurfer.load(`assets/audio/${format}/${baseFilename}.${format}`);
 
             coverContainer.onclick = () => {
@@ -200,7 +201,41 @@
         const lang = localStorage.getItem('lang') || 'en';
         setLanguage(lang);
     });
+
+
+    const volumeSlider = document.getElementById('volume-slider');
+    const muteToggle = document.getElementById('mute-toggle');
+    let isMuted = false;
+    let lastVolume = 1;
+
+    volumeSlider.addEventListener('input', () => {
+        const newVolume = parseFloat(volumeSlider.value);
+        players.forEach(({ wavesurfer }) => wavesurfer.setVolume(newVolume));
+        isMuted = newVolume === 0;
+        muteToggle.textContent = isMuted ? '🔇' : '🔊';
+        lastVolume = newVolume;
+    });
+
+    muteToggle.addEventListener('click', () => {
+        isMuted = !isMuted;
+        if (isMuted) {
+            players.forEach(({ wavesurfer }) => wavesurfer.setVolume(0));
+            muteToggle.textContent = '🔇';
+        } else {
+            players.forEach(({ wavesurfer }) => wavesurfer.setVolume(lastVolume));
+            muteToggle.textContent = '🔊';
+            volumeSlider.value = lastVolume;
+        }
+    });
+
+
+
 </script>
+
+<div id="volume-control">
+    <button id="mute-toggle" title="Mute / Unmute">🔊</button>
+    <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="1">
+</div>
 
 </body>
 </html>
