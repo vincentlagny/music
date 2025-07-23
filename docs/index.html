@@ -27,13 +27,22 @@
 <main id="content"></main>
 
 <footer>
-    <p>&copy; 2025 Vincent Lagny – Version 1.30 – Licence CC BY-NC-SA 4.0</p>
+    <p>&copy; 2025 Vincent Lagny – Version 1.30a – Licence CC BY-NC-SA 4.0</p>
 </footer>
 
 <script>
     let isHiFi = false;
     let currentPlaying = null;
     const players = [];
+
+    function getDownloadLink(url) {
+        const match = url.match(/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)\//);
+        if (match) {
+            const fileId = match[1];
+            return `https://drive.google.com/uc?export=download&id=${fileId}`;
+        }
+        return url; // fallback: retourne l'URL telle quelle si ce n’est pas un lien GDrive
+    }
 
     function renderTracks(lang = 'en') {
         fetch('./assets/data/tracks.json')
@@ -61,7 +70,7 @@
                     <h2>${track.title}</h2>
                     ${trackDesc.map(p => `<p>${p}</p>`).join('')}
                     <div class="waveform"></div>
-                    <p><a href="${hifiPath}" download class="hifi-link">⬇️ Download in HiFi (.wav)</a></p>
+                    <p><a href="${getDownloadLink(track.hifi)}" class="hifi-link" target="_blank" rel="noopener">⬇️ Download in HiFi (.wav)</a></p>
                   </div>
                 `;
 
