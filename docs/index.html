@@ -36,7 +36,7 @@
     <div class="button-row">
         <button id="rewind-global" title="Rewind current track" aria-label="Rewind current track">
             <svg viewBox="0 0 24 24" width="24" height="24" fill="#888">
-                <path d="M12 5v4.55C7.76 9.79 5 12.36 5 16c0 3.87 3.13 7 7 7s7-3.13 7-7h-2c0 2.76-2.24 5-5 5s-5-2.24-5-5c0-2.2 1.78-4 5-4.45V15l5-5-5-5z"/>
+                <path d="M12 5v4.55C7.76 9.79 5 12.36 5 16c0 3.87 3.13 7 7 7s7-3.13 7-7h-2c0 2.76-2.24 5-5 5s-5-2.24-5-5c0-2.2 1.78-4 5-4.45V15l5-5-5-5z" transform="translate(0, -3)/>
             </svg>
         </button>
 
@@ -239,8 +239,19 @@
                     wavesurfer.seekTo(0);
                     wavesurfer.play();
                 } else if (loopMode === 2) {
-                    wavesurfer.seekTo(0);
-                    wavesurfer.play();
+                    const currentIndex = players.findIndex(p => p.wavesurfer === wavesurfer);
+                    const nextIndex = (currentIndex + 1) % players.length;
+                    const nextPlayer = players[nextIndex].wavesurfer;
+
+                    nextPlayer.seekTo(0);
+                    nextPlayer.play();
+                    currentPlaying = nextPlayer;
+
+                    const globalCover = document.getElementById('cover-image');
+                    const nextCover = document.querySelectorAll('.track')[nextIndex].querySelector('.cover');
+                    if (nextCover && globalCover) {
+                        globalCover.src = nextCover.src;
+                    }
                 } else {
                     currentPlaying = null;
 
