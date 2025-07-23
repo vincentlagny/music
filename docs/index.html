@@ -27,7 +27,7 @@
 <main id="content"></main>
 
 <footer>
-    <p>&copy; 2025 Vincent Lagny – Version 1.32 – Licence CC BY-NC-SA 4.0</p>
+    <p>&copy; 2025 Vincent Lagny – Version 1.32a – Licence CC BY-NC-SA 4.0</p>
 </footer>
 
 <script>
@@ -86,11 +86,10 @@
                     ${trackDesc.map(p => `<p>${p}</p>`).join('')}
                     <div class="waveform"></div>
                     <p class="duration-controls">
-                        <span class="duration">00:00 / 00:00</span>
+                        <span class="duration" style="font-size: 0.8em; color: #666; margin-top: 4px;">00:00 / 00:00</span>
                         <button class="rewind" title="Rewind">⏪</button>
                         <button class="loop" title="Loop">🔁</button>
                     </p>
-                    <div class="playback-time" style="font-size: 0.8em; color: #666; margin-top: 4px;">--:-- / --:--</div>
                     <p><a href="${getDownloadLink(track.hifi)}" class="hifi-link" target="_blank" rel="noopener">${translations[lang].downloadHifi}</a></p>
                   </div>
                 `;
@@ -161,22 +160,6 @@
                 iconOverlay.classList.remove('pause');
                 iconOverlay.classList.add('play');
             });
-            wavesurfer.on('finish', () => {
-                iconOverlay.classList.remove('pause');
-                iconOverlay.classList.add('play');
-
-                if (isLooping) {
-                    wavesurfer.seekTo(0);
-                    wavesurfer.play();
-                } else {
-                    currentPlaying = null;
-
-                    // Remet à zéro l'affichage du temps
-                    const total = formatTime(wavesurfer.getDuration());
-                    playbackElement.textContent = `00:00 / ${total}`;
-                }
-            });
-
 
             rewindBtn.onclick = () => {
                 wavesurfer.seekTo(0);
@@ -184,7 +167,7 @@
 
             loopBtn.onclick = () => {
                 isLooping = !isLooping;
-                loopBtn.style.opacity = isLooping ? '1' : '0.3';
+                loopBtn.classList.toggle('active', isLooping);
             };
 
             wavesurfer.on('finish', () => {
@@ -195,9 +178,10 @@
                     wavesurfer.play();
                 } else {
                     currentPlaying = null;
+                    const total = formatTime(wavesurfer.getDuration());
+                    durationEl.textContent = `00:00 / ${total}`;
                 }
             });
-
 
             players.push({ wavesurfer });
         });
