@@ -253,6 +253,20 @@
 
             });
 
+            // Clic sur le graph wave pour avancer dans le son
+            wavesurfer.on('interaction', (event) => {
+                const bounding = wavesurfer.container.getBoundingClientRect();
+                const x = event.clientX - bounding.left;
+                const width = bounding.width;
+
+                const percent = x / width;
+                const duration = wavesurfer.getDuration();
+                const seekTo = percent * duration;
+
+                wavesurfer.seekTo(percent); // méthode officielle de WaveSurfer
+            });
+
+
 
 
             players.push({ wavesurfer });
