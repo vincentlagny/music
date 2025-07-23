@@ -27,12 +27,16 @@
 <main id="content"></main>
 
 <div id="volume-control">
+    <button id="rewind-global" title="Rewind current track">⏮️</button>
+    <button id="loop-track" title="Loop current track">🔁1</button>
+    <button id="loop-all" title="Loop all tracks">🔁∞</button>
     <button id="mute-toggle" title="Mute / Unmute">🔊</button>
     <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="1">
 </div>
 
+
 <footer>
-    <p>&copy; 2025 Vincent Lagny – Version 1.33a – Licence CC BY-NC-SA 4.0</p>
+    <p>&copy; 2025 Vincent Lagny – Version 1.34a – Licence CC BY-NC-SA 4.0</p>
 </footer>
 
 <script>
@@ -92,8 +96,6 @@
                     <div class="waveform"></div>
                     <p class="duration-controls">
                         <span class="duration" style="font-size: 0.8em; color: #666; margin-top: 4px;">00:00 / 00:00</span>
-                        <button class="rewind" title="Rewind">⏪</button>
-                        <button class="loop" title="Loop">🔁</button>
                     </p>
                     <p><a href="${getDownloadLink(track.hifi)}" class="hifi-link" target="_blank" rel="noopener">${translations[lang].downloadHifi}</a></p>
                   </div>
@@ -111,8 +113,6 @@
         document.querySelectorAll('.track').forEach(track => {
             const container = track.querySelector('.waveform');
             const durationEl = track.querySelector('.duration');
-            const rewindBtn = track.querySelector('.rewind');
-            const loopBtn = track.querySelector('.loop');
             let isLooping = false;
 
             const durationElement = track.querySelector('.duration');
@@ -167,27 +167,27 @@
                 iconOverlay.classList.add('play');
             });
 
-            rewindBtn.onclick = () => {
-                wavesurfer.seekTo(0);
-            };
-
-            loopBtn.onclick = () => {
-                isLooping = !isLooping;
-                loopBtn.classList.toggle('active', isLooping);
-            };
-
             wavesurfer.on('finish', () => {
                 iconOverlay.classList.remove('pause');
                 iconOverlay.classList.add('play');
-                if (isLooping) {
+
+                if (loopCurrentTrack) {
                     wavesurfer.seekTo(0);
                     wavesurfer.play();
+                } else if (loopAllTracks) {
+                    const currentIndex = players.findIndex(p => p.wavesurfer === wavesurfer);
+                    const nextIndex = (currentIndex + 1) % players.length;
+                    const next = players[nextIndex].wavesurfer;
+                    currentPlaying = next;
+                    next.seekTo(0);
+                    next.play();
                 } else {
                     currentPlaying = null;
                     const total = formatTime(wavesurfer.getDuration());
                     durationEl.textContent = `00:00 / ${total}`;
                 }
             });
+
 
             players.push({ wavesurfer });
         });
@@ -206,6 +206,33 @@
         const lang = localStorage.getItem('lang') || 'en';
         setLanguage(lang);
     });
+
+
+
+    // Références des nouveaux boutons globaux
+    const rewindBtn = document.getElementById('rewind-global');
+    const loopTrackBtn = document.getElementById('loop-track');
+    const loopAllBtn = document.getElementById('loop-all');
+
+    let loopCurrentTrack = false;
+    let loopAllTracks = false;
+
+    rewindBtn.addEventListener('click', () => {
+        if (currentPlaying) {
+            currentPlaying.seekTo(0);
+        }
+    });
+
+    loopTrackBtn.addEventListener('click', () => {
+        loopCurrentTrack = !loopCurrentTrack;
+        loopTrackBtn.classList.toggle('active', loopCurrentTrack);
+    });
+
+    loopAllBtn.addEventListener('click', () => {
+        loopAllTracks = !loopAllTracks;
+        loopAllBtn.classList.toggle('active', loopAllTracks);
+    });
+
 
 
     const volumeSlider = document.getElementById('volume-slider');
