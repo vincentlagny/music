@@ -189,10 +189,9 @@
                     currentPlaying.pause();
                 }
                 wavesurfer.playPause();
-                if (wavesurfer.isPlaying()) {
-                    currentPlaying = wavesurfer;
-                }
+                currentPlaying = wavesurfer; // ← forcer la mise à jour même si pause
             };
+
 
             wavesurfer.on('ready', () => {
                 const total = formatTime(wavesurfer.getDuration());
@@ -304,6 +303,7 @@
 
 
     ////////////////////////////// ⏯️ Bouton Play / Pause global
+    const playPauseBtn = document.getElementById('play-pause-toggle');
     const playIcon = playPauseBtn.querySelector('#play-icon');
     const pauseIcon = playPauseBtn.querySelector('#pause-icon');
 
