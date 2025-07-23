@@ -411,7 +411,7 @@ input:checked + .slider:before {
     padding: 4px;
     margin: 0;
     cursor: pointer;
-    line-height: 0; /* ✅ élimine l'espace vertical inutile */
+    /* line-height: 0;  ✅ élimine l'espace vertical inutile */
     display: flex;  /* ✅ assure que le svg remplit bien le bouton */
     align-items: center;
     justify-content: center;
