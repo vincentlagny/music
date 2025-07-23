@@ -27,6 +27,11 @@
 <main id="content"></main>
 
 <div id="volume-control">
+
+    <div id="now-playing-cover" style="width: 50px; height: 50px; overflow: hidden; border-radius: 6px; margin-right: 10px;">
+        <img src="assets/covers/empty.png" alt="Current cover" id="cover-image" style="width: 100%; height: 100%; object-fit: cover; border-radius: 6px;">
+    </div>
+
     <button id="rewind-global" title="Rewind current track" aria-label="Rewind current track">
         <svg viewBox="0 0 24 24" width="24" height="24" fill="#888">
             <path d="M12 5v4.55C7.76 9.79 5 12.36 5 16c0 3.87 3.13 7 7 7s7-3.13 7-7h-2c0 2.76-2.24 5-5 5s-5-2.24-5-5c0-2.2 1.78-4 5-4.45V15l5-5-5-5z"/>
@@ -189,9 +194,15 @@
                     currentPlaying.pause();
                 }
                 wavesurfer.playPause();
-                currentPlaying = wavesurfer; // ← forcer la mise à jour même si pause
-            };
+                currentPlaying = wavesurfer;
 
+                // 🎵 Mise à jour de la pochette dans le bloc global
+                const coverImg = track.querySelector('.cover');
+                const globalCover = document.getElementById('cover-image');
+                if (coverImg && globalCover) {
+                    globalCover.src = coverImg.src;
+                }
+            };
 
             wavesurfer.on('ready', () => {
                 const total = formatTime(wavesurfer.getDuration());
@@ -229,7 +240,14 @@
                     wavesurfer.play();
                 } else {
                     currentPlaying = null;
+
+                    // 🕊️ Image par défaut
+                    const globalCover = document.getElementById('cover-image');
+                    if (globalCover) {
+                        globalCover.src = 'assets/covers/empty.png';
+                    }
                 }
+
             });
 
 
@@ -361,6 +379,13 @@
         nextPlayer.seekTo(0);
         nextPlayer.play();
         currentPlaying = nextPlayer;
+
+        const globalCover = document.getElementById('cover-image');
+        const nextCover = document.querySelectorAll('.track')[nextIndex].querySelector('.cover');
+        if (nextCover && globalCover) {
+            globalCover.src = nextCover.src;
+        }
+
     });
 
 
