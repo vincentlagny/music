@@ -1,107 +1,116 @@
-[
-  {
-    "file": "Frozen.Echoes",
-    "cover": "assets/covers/Frozen.Echoes.png",
-    "title": {
-      "en": "Frozen Echoes",
-      "fr": "Frozen Echoes"
-    },
-    "description": {
-      "en": [
+{
+  "en": [
+    {
+      "file": "Frozen.Echoes",
+      "cover": "assets/covers/Frozen.Echoes.png",
+      "hifi": "assets/audio/wav/Frozen.Echoes.wav",
+      "title": "Frozen Echoes",
+      "desc": [
         "“Frozen Echoes” is a sonic tribute to polar landscapes and the ghostly fauna of our world.",
         "It is a music of space, silence, and remembrance.<br>It speaks to the soul of those who still know how to listen to the cold."
-      ],
-      "fr": [
+      ]
+    },
+    {
+      "file": "Dawn.of.the.Wild",
+      "cover": "assets/covers/Dawn.of.the.Wild.png",
+      "hifi": "assets/audio/wav/Dawn.of.the.Wild.wav",
+      "title": "Dawn of the Wild",
+      "desc": [
+        "“Dawn of the Wild” is a musical ode to the forest awakening from its long slumber. Written for piano, violin, and cello, it captures the hush before the first light, when the earth exhales and life stirs again.",
+        "Amidst the moss and morning mist, a lone stag stands still — guardian of the rebirth, witness to the breath of spring returning.",
+        "This is a music of renewal and quiet strength, where each note carries the scent of damp leaves, the promise of blooming, the pulse of life reborn.<br>It speaks to the heart of those who still know how to listen to the woods."
+      ]
+    },
+    {
+      "file": "Wings.Over.the.Fire",
+      "cover": "assets/covers/Wings.Over.the.Fire.png",
+      "hifi": "assets/audio/wav/Wings.Over.the.Fire.wav",
+      "title": "Wings Over the Fire",
+      "desc": [
+        "“Wings Over the Fire” is a sonic journey through destruction and grace.",
+        "Composed for piano, violin, and cello, this album tells the story of a burning forest seen not from within the flames, but from above — from the steady, gliding perspective of an eagle in flight.",
+        "Each piece evokes the fragility of life, the violence of collapse, and the strange serenity that exists at a distance from catastrophe.<br>It is a music of soaring lines and trembling textures, of embers and silence, of grief and dignity.",
+        "This is not a lament — but a vigil."
+      ]
+    },
+    {
+      "file": "Dust.and.Silence",
+      "cover": "assets/covers/Dust.and.Silence.png",
+      "hifi": "assets/audio/wav/Dust.and.Silence.wav",
+      "title": "Dust and Silence",
+      "desc": [
+        "“Dust and Silence” is a solitary piano ballad that drifts across forgotten lands and fading memories. Each note falls like a footstep in the dust — soft, uncertain, and slow.",
+        "This is music for the spaces in between, where absence speaks louder than presence, and where melancholy becomes a gentle companion to the wandering soul."
+      ]
+    },
+    {
+      "file": "The.Turning.Green",
+      "cover": "assets/covers/The.Turning.Green.png",
+      "hifi": "assets/audio/wav/The.Turning.Green.wav",
+      "title": "The Turning Green",
+      "desc": [
+        "“The Turning Green” is a contemplative album for piano, violin, and cello, where each note unfolds like a leaf opening to the light.",
+        "Built on slow harmonic movements, subtle textures, and natural resonance, the music embraces silence as a living element — allowing breath, space, and depth.",
+        "It invites the listener into a quiet dialogue with time itself, echoing the cycles of growth, decay, and renewal that shape the forest floor.",
+        "Beneath its fragile melodies lies the steady rhythm of something older than us: the roots that hold, the silence that remembers, and the earth that continues — even when we forget to listen."
+      ]
+    }
+  ],
+  "fr": [
+    {
+      "file": "Frozen.Echoes",
+      "cover": "assets/covers/Frozen.Echoes.png",
+      "hifi": "assets/audio/wav/Frozen.Echoes.wav",
+      "title": "Frozen Echoes",
+      "desc": [
         "“Frozen Echoes » est un hommage sonore aux paysages polaires et à la faune fantomatique de notre monde.",
         "C’est une musique d’espace, de silence et de mémoire.<br>Elle parle à ceux qui savent encore écouter le froid."
       ]
     },
-    "hifi": "assets/audio/wav/Frozen.Echoes.wav"
-  },
-  {
-    "file": "Dawn.of.the.Wild",
-    "cover": "assets/covers/Dawn.of.the.Wild.png",
-    "title": {
-      "en": "Dawn of the Wild",
-      "fr": "Dawn of the Wild"
-    },
-    "description": {
-      "en": [
-        "“Dawn of the Wild” is a musical ode to the forest awakening from its long slumber. Written for piano, violin, and cello, it captures the hush before the first light, when the earth exhales and life stirs again.",
-        "Amidst the moss and morning mist, a lone stag stands still — guardian of the rebirth, witness to the breath of spring returning.",
-        "This is a music of renewal and quiet strength, where each note carries the scent of damp leaves, the promise of blooming, the pulse of life reborn.<br>It speaks to the heart of those who still know how to listen to the woods."
-      ],
-      "fr": [
+    {
+      "file": "Dawn.of.the.Wild",
+      "cover": "assets/covers/Dawn.of.the.Wild.png",
+      "hifi": "assets/audio/wav/Dawn.of.the.Wild.wav",
+      "title": "Dawn of the Wild",
+      "desc": [
         "“Dawn of the Wild” est une ode musicale à la forêt qui s’éveille d’un long sommeil. Composée pour piano, violon et violoncelle, elle capte le silence avant la lumière, quand la terre expire et la vie se ranime.",
         "Parmi la mousse et la brume matinale, un cerf solitaire demeure immobile — gardien de la renaissance, témoin du souffle du printemps.",
         "C’est une musique de renouveau et de force tranquille, où chaque note porte le parfum des feuilles humides, la promesse d’éclosion, le pouls de la vie retrouvée.<br>Elle parle à ceux qui savent encore écouter les bois."
       ]
     },
-    "hifi": "assets/audio/wav/Dawn.of.the.Wild.wav"
-  },
-  {
-    "file": "Wings.Over.the.Fire",
-    "cover": "assets/covers/Wings.Over.the.Fire.png",
-    "title": {
-      "en": "Wings Over the Fire",
-      "fr": "Wings Over the Fire"
-    },
-    "description": {
-      "en": [
-        "“Wings Over the Fire” is a sonic journey through destruction and grace.",
-        "Composed for piano, violin, and cello, this album tells the story of a burning forest seen not from within the flames, but from above — from the steady, gliding perspective of an eagle in flight.",
-        "Each piece evokes the fragility of life, the violence of collapse, and the strange serenity that exists at a distance from catastrophe.<br>It is a music of soaring lines and trembling textures, of embers and silence, of grief and dignity.",
-        "This is not a lament — but a vigil."
-      ],
-      "fr": [
+    {
+      "file": "Wings.Over.the.Fire",
+      "cover": "assets/covers/Wings.Over.the.Fire.png",
+      "hifi": "assets/audio/wav/Wings.Over.the.Fire.wav",
+      "title": "Wings Over the Fire",
+      "desc": [
         "“Wings Over the Fire” est un voyage sonore entre destruction et grâce.",
         "Composé pour piano, violon et violoncelle, cet album raconte l’histoire d’une forêt en feu vue d’en haut — à travers le vol stable et plané d’un aigle.",
         "Chaque pièce évoque la fragilité de la vie, la violence de l’effondrement et la sérénité étrange qui naît à distance de la catastrophe.<br>C’est une musique de lignes ascendantes, de textures frémissantes, de braises et de silence, de deuil et de dignité.",
         "Ce n’est pas une plainte — c’est une veillée."
       ]
     },
-    "hifi": "assets/audio/wav/Wings.Over.the.Fire.wav"
-  },
-  {
-    "file": "Dust.and.Silence",
-    "cover": "assets/covers/Dust.and.Silence.png",
-    "title": {
-      "en": "Dust and Silence",
-      "fr": "Dust and Silence"
-    },
-    "description": {
-      "en": [
-        "“Dust and Silence” is a solitary piano ballad that drifts across forgotten lands and fading memories. Each note falls like a footstep in the dust — soft, uncertain, and slow.",
-        "This is music for the spaces in between, where absence speaks louder than presence, and where melancholy becomes a gentle companion to the wandering soul."
-      ],
-      "fr": [
+    {
+      "file": "Dust.and.Silence",
+      "cover": "assets/covers/Dust.and.Silence.png",
+      "hifi": "assets/audio/wav/Dust.and.Silence.wav",
+      "title": "Dust and Silence",
+      "desc": [
         "“Dust and Silence” est une ballade solitaire au piano, errant sur des terres oubliées et des souvenirs effacés. Chaque note tombe comme un pas dans la poussière — doux, incertain, lent.",
         "C’est une musique pour les interstices, où l’absence parle plus fort que la présence, et où la mélancolie devient compagne douce à l’âme errante."
       ]
     },
-    "hifi": "assets/audio/wav/Dust.and.Silence.wav"
-  },
-  {
-    "file": "The.Turning.Green",
-    "cover": "assets/covers/The.Turning.Green.png",
-    "title": {
-      "en": "The Turning Green",
-      "fr": "The Turning Green"
-    },
-    "description": {
-      "en": [
-        "“The Turning Green” is a contemplative album for piano, violin, and cello, where each note unfolds like a leaf opening to the light.",
-        "Built on slow harmonic movements, subtle textures, and natural resonance, the music embraces silence as a living element — allowing breath, space, and depth.",
-        "It invites the listener into a quiet dialogue with time itself, echoing the cycles of growth, decay, and renewal that shape the forest floor.",
-        "Beneath its fragile melodies lies the steady rhythm of something older than us: the roots that hold, the silence that remembers, and the earth that continues — even when we forget to listen."
-      ],
-      "fr": [
+    {
+      "file": "The.Turning.Green",
+      "cover": "assets/covers/The.Turning.Green.png",
+      "hifi": "assets/audio/wav/The.Turning.Green.wav",
+      "title": "The Turning Green",
+      "desc": [
         "“The Turning Green” est un album contemplatif pour piano, violon et violoncelle, où chaque note se déplie comme une feuille s’ouvrant à la lumière.",
         "Basée sur des mouvements harmoniques lents, des textures subtiles et une résonance naturelle, la musique accueille le silence comme un élément vivant — laissant place au souffle, à l’espace, à la profondeur.",
         "Elle invite l’auditeur à un dialogue tranquille avec le temps lui-même, écho des cycles de croissance, de déclin et de renouveau qui façonnent le sol de la forêt.",
         "Sous ses mélodies fragiles, on perçoit le rythme d’une chose plus ancienne que nous : les racines qui tiennent, le silence qui se souvient, la terre qui continue — même quand nous oublions d’écouter."
       ]
-    },
-    "hifi": "assets/audio/wav/The.Turning.Green.wav"
-  }
-]
+    }
+  ]
+}
