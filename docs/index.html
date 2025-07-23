@@ -32,59 +32,62 @@
         <img src="assets/covers/empty.png" alt="Current cover" id="cover-image" style="width: 100%; height: 100%; object-fit: cover; border-radius: 6px;">
     </div>
 
-    <button id="rewind-global" title="Rewind current track" aria-label="Rewind current track">
-        <svg viewBox="0 0 24 24" width="24" height="24" fill="#888">
-            <path d="M12 5v4.55C7.76 9.79 5 12.36 5 16c0 3.87 3.13 7 7 7s7-3.13 7-7h-2c0 2.76-2.24 5-5 5s-5-2.24-5-5c0-2.2 1.78-4 5-4.45V15l5-5-5-5z"/>
-        </svg>
-    </button>
+    <!-- Groupe des boutons -->
+    <div class="button-row">
+        <button id="rewind-global" title="Rewind current track" aria-label="Rewind current track">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="#888">
+                <path d="M12 5v4.55C7.76 9.79 5 12.36 5 16c0 3.87 3.13 7 7 7s7-3.13 7-7h-2c0 2.76-2.24 5-5 5s-5-2.24-5-5c0-2.2 1.78-4 5-4.45V15l5-5-5-5z"/>
+            </svg>
+        </button>
 
-    <!-- Bouton Play/Pause -->
-    <button id="play-pause-toggle" title="Play / Pause">
-        <svg viewBox="0 0 24 24" width="24" height="24" fill="#888">
-            <path id="play-icon" d="M8 5v14l11-7z"/>
-            <path id="pause-icon" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" style="display: none"/>
-        </svg>
-    </button>
+        <!-- Bouton Play/Pause -->
+        <button id="play-pause-toggle" title="Play / Pause">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="#888">
+                <path id="play-icon" d="M8 5v14l11-7z"/>
+                <path id="pause-icon" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" style="display: none"/>
+            </svg>
+        </button>
 
-    <!-- Bouton Next -->
-    <button id="next-track" title="Next track">
-        <svg viewBox="0 0 24 24" width="24" height="24" fill="#888">
-            <path d="M7 6v12l8.5-6L7 6zm9 0v12h2V6h-2z"/>
-        </svg>
-    </button>
+        <!-- Bouton Next -->
+        <button id="next-track" title="Next track">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="#888">
+                <path d="M7 6v12l8.5-6L7 6zm9 0v12h2V6h-2z"/>
+            </svg>
+        </button>
 
-    <!-- Bouton Loop -->
-    <button id="loop-toggle" title="Loop mode" aria-label="Loop mode">
-        <svg id="loop-icon" viewBox="0 0 24 24" width="24" height="24" fill="#888">
-            <!-- Mode LOOP OFF (défaut) -->
-            <g id="loop-off-icon">
-                <path d="M7 7h9v2l3-3-3-3v2H6c-1.1 0-2 .9-2 2v4h2V7z"/>
-                <line x1="4" y1="20" x2="20" y2="4" stroke="#888" stroke-width="2"/>
-            </g>
+        <!-- Bouton Loop -->
+        <button id="loop-toggle" title="Loop mode" aria-label="Loop mode">
+            <svg id="loop-icon" viewBox="0 0 24 24" width="24" height="24" fill="#888">
+                <!-- Mode LOOP OFF (défaut) -->
+                <g id="loop-off-icon">
+                    <path d="M7 7h9v2l3-3-3-3v2H6c-1.1 0-2 .9-2 2v4h2V7z"/>
+                    <line x1="4" y1="20" x2="20" y2="4" stroke="#888" stroke-width="2"/>
+                </g>
 
-            <!-- Mode LOOP ONE -->
-            <g id="loop-one-icon" style="display: none;">
-                <path d="M7 7h10v2l3-3-3-3v2H6c-1.1 0-2 .9-2 2v3h2V7z"/>
-                <path d="M17 17H6v-2l-3 3 3 3v-2h11c1.1 0 2-.9 2-2v-3h-2v3z"/>
-                <text x="15" y="20" font-size="10" fill="#888">1</text>
-            </g>
+                <!-- Mode LOOP ONE -->
+                <g id="loop-one-icon" style="display: none;">
+                    <path d="M7 7h10v2l3-3-3-3v2H6c-1.1 0-2 .9-2 2v3h2V7z"/>
+                    <path d="M17 17H6v-2l-3 3 3 3v-2h11c1.1 0 2-.9 2-2v-3h-2v3z"/>
+                    <text x="15" y="20" font-size="10" fill="#888">1</text>
+                </g>
 
-            <!-- Mode LOOP ALL -->
-            <g id="loop-all-icon" style="display: none;">
-                <path d="M7 7h10v2l3-3-3-3v2H6c-1.1 0-2 .9-2 2v3h2V7z"/>
-                <path d="M17 17H6v-2l-3 3 3 3v-2h11c1.1 0 2-.9 2-2v-3h-2v3z"/>
-                <circle cx="12" cy="12" r="1" fill="#888"/>
-            </g>
-        </svg>
-    </button>
+                <!-- Mode LOOP ALL -->
+                <g id="loop-all-icon" style="display: none;">
+                    <path d="M7 7h10v2l3-3-3-3v2H6c-1.1 0-2 .9-2 2v3h2V7z"/>
+                    <path d="M17 17H6v-2l-3 3 3 3v-2h11c1.1 0 2-.9 2-2v-3h-2v3z"/>
+                    <circle cx="12" cy="12" r="1" fill="#888"/>
+                </g>
+            </svg>
+        </button>
 
-    <!-- Bouton Mute -->
-    <button id="mute-toggle" title="Mute / Unmute">
-        <svg id="volume-icon" viewBox="0 0 24 24" width="24" height="24" fill="#888">
-            <path id="volume-on" d="M3 9v6h4l5 5V4L7 9H3z"/>
-            <path id="volume-off" d="M16.5 12l2.5 2.5-1.5 1.5L15 13.5l-2.5 2.5-1.5-1.5L13.5 12l-2.5-2.5 1.5-1.5L15 10.5l2.5-2.5 1.5 1.5L16.5 12z" style="display: none"/>
-        </svg>
-    </button>
+        <!-- Bouton Mute -->
+        <button id="mute-toggle" title="Mute / Unmute">
+            <svg id="volume-icon" viewBox="0 0 24 24" width="24" height="24" fill="#888">
+                <path id="volume-on" d="M3 9v6h4l5 5V4L7 9H3z"/>
+                <path id="volume-off" d="M16.5 12l2.5 2.5-1.5 1.5L15 13.5l-2.5 2.5-1.5-1.5L13.5 12l-2.5-2.5 1.5-1.5L15 10.5l2.5-2.5 1.5 1.5L16.5 12z" style="display: none"/>
+            </svg>
+        </button>
+    </div>
 
     <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="1">
 </div>
