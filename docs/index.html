@@ -27,7 +27,7 @@
 <main id="content"></main>
 
 <footer>
-    <p>&copy; 2025 Vincent Lagny – Version 1.29e – Licence CC BY-NC-SA 4.0</p>
+    <p>&copy; 2025 Vincent Lagny – Version 1.30 – Licence CC BY-NC-SA 4.0</p>
 </footer>
 
 <script>
@@ -39,36 +39,38 @@
         fetch('./assets/data/tracks.json')
             .then(res => res.json())
             .then(data => {
-                const tracks = data[lang];
+                const { tracks, desc } = data;
                 const container = document.getElementById('content');
                 container.innerHTML = '';
                 tracks.forEach(track => {
+                    const trackDesc = desc[lang][track.id] || [];
                     const format = isHiFi ? 'wav' : 'mp3';
                     const audioPath = `assets/audio/${format}/${track.file}.${format}`;
-                    const hifiPath = `assets/audio/wav/${track.file}.wav`;
+                    const hifiPath = track.hifi;
 
                     const section = document.createElement('section');
                     section.className = 'track';
                     section.setAttribute('data-audio', audioPath);
 
                     section.innerHTML = `
-          <div class="cover-container">
-            <img src="assets/covers/${track.cover}" class="cover" alt="${track.title}" />
-            <div class="icon-overlay play"></div>
-          </div>
-          <div class="info">
-            <h2>${track.title}</h2>
-            ${track.desc.map(p => `<p>${p}</p>`).join('')}
-            <div class="waveform"></div>
-            <p><a href="${hifiPath}" download class="hifi-link">⬇️ Download in HiFi (.wav)</a></p>
-          </div>
-        `;
+                  <div class="cover-container">
+                    <img src="assets/covers/${track.cover}" class="cover" alt="${track.title}" />
+                    <div class="icon-overlay play"></div>
+                  </div>
+                  <div class="info">
+                    <h2>${track.title}</h2>
+                    ${trackDesc.map(p => `<p>${p}</p>`).join('')}
+                    <div class="waveform"></div>
+                    <p><a href="${hifiPath}" download class="hifi-link">⬇️ Download in HiFi (.wav)</a></p>
+                  </div>
+                `;
 
                     container.appendChild(section);
                 });
                 initializeWaveSurfers();
             });
     }
+
 
     function initializeWaveSurfers() {
         players.length = 0;
