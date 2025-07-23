@@ -27,13 +27,22 @@
 <main id="content"></main>
 
 <footer>
-    <p>&copy; 2025 Vincent Lagny – Version 1.30b – Licence CC BY-NC-SA 4.0</p>
+    <p>&copy; 2025 Vincent Lagny – Version 1.31 – Licence CC BY-NC-SA 4.0</p>
 </footer>
 
 <script>
     let isHiFi = false;
     let currentPlaying = null;
     const players = [];
+
+    const translations = {
+        en: {
+            downloadHifi: "⬇️ Download in HiFi (.flac)"
+        },
+        fr: {
+            downloadHifi: "⬇️ Télécharger en HiFi (.flac)"
+        }
+    };
 
     function getDownloadLink(url) {
         const match = url.match(/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)\//);
@@ -70,7 +79,8 @@
                     <h2>${track.title}</h2>
                     ${trackDesc.map(p => `<p>${p}</p>`).join('')}
                     <div class="waveform"></div>
-                    <p><a href="${getDownloadLink(track.hifi)}" class="hifi-link" target="_blank" rel="noopener">⬇️ Download in HiFi (.wav)</a></p>
+                    <div class="playback-time" style="font-size: 0.8em; color: #666; margin-top: 4px;">--:-- / --:--</div>
+                    <p><a href="${getDownloadLink(track.hifi)}" class="hifi-link" target="_blank" rel="noopener">${translations[lang].downloadHifi}</a></p>
                   </div>
                 `;
 
@@ -85,6 +95,8 @@
         players.length = 0;
         document.querySelectorAll('.track').forEach(track => {
             const container = track.querySelector('.waveform');
+            const durationElement = track.querySelector('.duration');
+            const playbackElement = track.querySelector('.playback-time');
             const coverContainer = track.querySelector('.cover-container');
             const iconOverlay = track.querySelector('.icon-overlay');
             const baseFilename = track.getAttribute('data-audio').match(/([^/]+)\.(mp3|wav)$/)[1];
@@ -112,6 +124,26 @@
                 }
             };
 
+            wavesurfer.on('ready', () => {
+                const durationSec = wavesurfer.getDuration();
+                const minutes = Math.floor(durationSec / 60);
+                const seconds = Math.round(durationSec % 60).toString().padStart(2, '0');
+                playbackElement.textContent = `0:00 / ${minutes}:${seconds}`;
+            });
+
+            wavesurfer.on('audioprocess', () => {
+                const current = wavesurfer.getCurrentTime();
+                const duration = wavesurfer.getDuration();
+
+                const minC = Math.floor(current / 60);
+                const secC = Math.floor(current % 60).toString().padStart(2, '0');
+
+                const minT = Math.floor(duration / 60);
+                const secT = Math.round(duration % 60).toString().padStart(2, '0');
+
+                playbackElement.textContent = `${minC}:${secC} / ${minT}:${secT}`;
+            });
+
             wavesurfer.on('play', () => {
                 iconOverlay.classList.remove('play');
                 iconOverlay.classList.add('pause');
@@ -121,6 +153,10 @@
                 iconOverlay.classList.add('play');
             });
             wavesurfer.on('finish', () => {
+                const duration = wavesurfer.getDuration();
+                const minT = Math.floor(duration / 60);
+                const secT = Math.round(duration % 60).toString().padStart(2, '0');
+                playbackElement.textContent = `0:00 / ${minT}:${secT}`;
                 iconOverlay.classList.remove('pause');
                 iconOverlay.classList.add('play');
                 currentPlaying = null;
