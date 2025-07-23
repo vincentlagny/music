@@ -29,7 +29,7 @@
 <div id="volume-control">
     <button id="rewind-global" title="Rewind current track" aria-label="Rewind current track">
         <svg viewBox="0 0 24 24" width="24" height="24" fill="#888">
-            <path d="M11 18V6l-8.5 6L11 18zM13 6v12l8.5-6L13 6z"/>
+            <path d="M12 5v4.55C7.76 9.79 5 12.36 5 16c0 3.87 3.13 7 7 7s7-3.13 7-7h-2c0 2.76-2.24 5-5 5s-5-2.24-5-5c0-2.2 1.78-4 5-4.45V15l5-5-5-5z"/>
         </svg>
     </button>
 
@@ -191,10 +191,12 @@
             wavesurfer.on('play', () => {
                 iconOverlay.classList.remove('play');
                 iconOverlay.classList.add('pause');
+                updatePlayPauseIcon(true); // 🔁 met à jour l’icône globale
             });
             wavesurfer.on('pause', () => {
                 iconOverlay.classList.remove('pause');
                 iconOverlay.classList.add('play');
+                updatePlayPauseIcon(false); // 🔁 met à jour l’icône globale
             });
 
             wavesurfer.on('finish', () => {
