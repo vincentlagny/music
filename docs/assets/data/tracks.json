@@ -2,7 +2,7 @@
   "en": [
     {
       "file": "Frozen.Echoes",
-      "cover": "assets/covers/Frozen.Echoes.png",
+      "cover": "Frozen.Echoes.png",
       "hifi": "assets/audio/wav/Frozen.Echoes.wav",
       "title": "Frozen Echoes",
       "desc": [
@@ -12,7 +12,7 @@
     },
     {
       "file": "Dawn.of.the.Wild",
-      "cover": "assets/covers/Dawn.of.the.Wild.png",
+      "cover": "Dawn.of.the.Wild.png",
       "hifi": "assets/audio/wav/Dawn.of.the.Wild.wav",
       "title": "Dawn of the Wild",
       "desc": [
@@ -23,7 +23,7 @@
     },
     {
       "file": "Wings.Over.the.Fire",
-      "cover": "assets/covers/Wings.Over.the.Fire.png",
+      "cover": "Wings.Over.the.Fire.png",
       "hifi": "assets/audio/wav/Wings.Over.the.Fire.wav",
       "title": "Wings Over the Fire",
       "desc": [
@@ -35,7 +35,7 @@
     },
     {
       "file": "Dust.and.Silence",
-      "cover": "assets/covers/Dust.and.Silence.png",
+      "cover": "Dust.and.Silence.png",
       "hifi": "assets/audio/wav/Dust.and.Silence.wav",
       "title": "Dust and Silence",
       "desc": [
@@ -45,7 +45,7 @@
     },
     {
       "file": "The.Turning.Green",
-      "cover": "assets/covers/The.Turning.Green.png",
+      "cover": "The.Turning.Green.png",
       "hifi": "assets/audio/wav/The.Turning.Green.wav",
       "title": "The Turning Green",
       "desc": [
@@ -59,7 +59,7 @@
   "fr": [
     {
       "file": "Frozen.Echoes",
-      "cover": "assets/covers/Frozen.Echoes.png",
+      "cover": "Frozen.Echoes.png",
       "hifi": "assets/audio/wav/Frozen.Echoes.wav",
       "title": "Frozen Echoes",
       "desc": [
@@ -69,7 +69,7 @@
     },
     {
       "file": "Dawn.of.the.Wild",
-      "cover": "assets/covers/Dawn.of.the.Wild.png",
+      "cover": "Dawn.of.the.Wild.png",
       "hifi": "assets/audio/wav/Dawn.of.the.Wild.wav",
       "title": "Dawn of the Wild",
       "desc": [
@@ -80,7 +80,7 @@
     },
     {
       "file": "Wings.Over.the.Fire",
-      "cover": "assets/covers/Wings.Over.the.Fire.png",
+      "cover": "Wings.Over.the.Fire.png",
       "hifi": "assets/audio/wav/Wings.Over.the.Fire.wav",
       "title": "Wings Over the Fire",
       "desc": [
@@ -92,7 +92,7 @@
     },
     {
       "file": "Dust.and.Silence",
-      "cover": "assets/covers/Dust.and.Silence.png",
+      "cover": "Dust.and.Silence.png",
       "hifi": "assets/audio/wav/Dust.and.Silence.wav",
       "title": "Dust and Silence",
       "desc": [
@@ -102,7 +102,7 @@
     },
     {
       "file": "The.Turning.Green",
-      "cover": "assets/covers/The.Turning.Green.png",
+      "cover": "The.Turning.Green.png",
       "hifi": "assets/audio/wav/The.Turning.Green.wav",
       "title": "The Turning Green",
       "desc": [
