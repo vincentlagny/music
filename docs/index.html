@@ -35,9 +35,8 @@
     <!-- Groupe des boutons -->
     <div class="button-row">
         <button id="rewind-global" title="Rewind current track" aria-label="Rewind current track">
-            <!-- License: MIT. Made by teenyicons: https://github.com/teenyicons/teenyicons -->
             <svg viewBox="0 0 24 24" width="24" height="24" fill="#888">
-                <path d="M10 12L18 18V6L10 12ZM2 12L10 18V6L2 12Z" fill="currentColor"/>
+                <path d="M10 12L18 18V6L10 12ZM2 12L10 18V6L2 12Z"/>
             </svg>
         </button>
 
@@ -61,26 +60,34 @@
             <svg id="loop-icon" viewBox="0 0 24 24" width="24" height="24" fill="#888">
                 <!-- Mode LOOP OFF (défaut) -->
                 <g id="loop-off-icon">
-                    <!-- Base: same loop icon -->
-                    <path d="M17 1L19.5 3.5L17 6V4H9C5.69 4 3 6.69 3 10C3 10.55 3.45 11 4 11C4.55 11 5 10.55 5 10C5 7.79 6.79 6 9 6H17V4ZM7 23L4.5 20.5L7 18V20H15C18.31 20 21 17.31 21 14C21 13.45 20.55 13 20 13C19.45 13 19 13.45 19 14C19 16.21 17.21 18 15 18H7V20Z" fill="currentColor"/>
-                    <!-- Diagonal bar -->
-                    <line x1="4" y1="4" x2="20" y2="20" stroke="currentColor" stroke-width="2"/>
+                    <path d="M7 7h10v2l3-3-3-3v2H6c-1.1 0-2 .9-2 2v3h2V7z"/>
+                    <path d="M17 17H6v-2l-3 3 3 3v-2h11c1.1 0 2-.9 2-2v-3h-2v3z"/>
+                    <!-- Barre diagonale en miroir -->
+                    <line x1="20" y1="20" x2="4" y2="4" stroke="#888" stroke-width="2"/>
                 </g>
-
 
                 <!-- Mode LOOP ONE -->
                 <g id="loop-one-icon" style="display: none;">
-                    <path d="M17 1L19.5 3.5L17 6V4H9C5.69 4 3 6.69 3 10C3 10.55 3.45 11 4 11C4.55 11 5 10.55 5 10C5 7.79 6.79 6 9 6H17V4ZM7 23L4.5 20.5L7 18V20H15C18.31 20 21 17.31 21 14C21 13.45 20.55 13 20 13C19.45 13 19 13.45 19 14C19 16.21 17.21 18 15 18H7V20Z" fill="currentColor"/>
-                    <!-- Cercle + chiffre 1 -->
-                    <circle cx="12" cy="12" r="4.2" fill="white" stroke="currentColor" stroke-width="1.5"/>
-                    <text x="12" y="13.6" text-anchor="middle" font-size="6.5" fill="currentColor" font-family="Arial, sans-serif" font-weight="bold">1</text>
+                    <path d="M7 7h10v2l3-3-3-3v2H6c-1.1 0-2 .9-2 2v3h2V7z"/>
+                    <path d="M17 17H6v-2l-3 3 3 3v-2h11c1.1 0 2-.9 2-2v-3h-2v3z"/>
+                    <text x="13" y="19" font-size="11" fill="#888" font-family="Arial, sans-serif" font-weight="bold">1</text>
                 </g>
-
 
                 <!-- Mode LOOP ALL -->
                 <g id="loop-all-icon" style="display: none;">
-                    <path d="M17 1L19.5 3.5L17 6V4H9C5.69 4 3 6.69 3 10C3 10.55 3.45 11 4 11C4.55 11 5 10.55 5 10C5 7.79 6.79 6 9 6H17V4ZM7 23L4.5 20.5L7 18V20H15C18.31 20 21 17.31 21 14C21 13.45 20.55 13 20 13C19.45 13 19 13.45 19 14C19 16.21 17.21 18 15 18H7V20Z" fill="currentColor"/>
+                    <path d="M7 7h10v2l3-3-3-3v2H6c-1.1 0-2 .9-2 2v3h2V7z"/>
+                    <path d="M17 17H6v-2l-3 3 3 3v-2h11c1.1 0 2-.9 2-2v-3h-2v3z"/>
+                    <!-- Flèches épaisses, inspirées du style PNG -->
+                    <polyline points="7,7 17,7" stroke="#888" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+                    <polyline points="17,17 7,17" stroke="#888" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
                 </g>
+
+                <defs>
+                    <marker id="arrowhead" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto" markerUnits="strokeWidth">
+                        <path d="M0,0 L6,3 L0,6 Z" fill="#888" />
+                    </marker>
+                </defs>
+
             </svg>
         </button>
 
