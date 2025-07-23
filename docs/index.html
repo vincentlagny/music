@@ -1,8 +1,9 @@
+<!-- index.html épuré -->
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>🎵 Musiques IA – Écoute libre</title>
+    <title>🎵 St Vince – Music & Climate</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/wavesurfer.js"></script>
@@ -14,7 +15,7 @@
         <span class="logo">🎵</span>
         <div class="text-block">
             <div class="title">St Vince</div>
-            <div class="subtitle">Original music with a human soul and an AI spark</div>
+            <div class="subtitle" id="header-sub">Original music with a human soul and an AI spark</div>
         </div>
     </div>
     <div class="language-switch">
@@ -23,206 +24,115 @@
     </div>
 </header>
 
-<main>
-    <section class="track" data-audio="assets/audio/mp3/Frozen.Echoes.mp3">
-        <div class="cover-container">
-            <img src="assets/covers/Frozen.Echoes.png" alt="Frozen Echoes" class="cover" />
-            <div class="icon-overlay play"></div>
-        </div>
-        <div class="info">
-
-            <h2 data-i18n="title_frozen">Frozen Echoes</h2>
-            <p><strong data-i18n="desc1_frozen">“Frozen Echoes” is a sonic tribute to polar landscapes and the ghostly fauna of our world.</strong></p>
-            <p data-i18n="desc2_frozen">It is a music of space, silence, and remembrance.<br>It speaks to the soul of those who still know how to listen to the cold.</p>
-
-            <div class="waveform"></div>
-            <p>
-                <a href="assets/audio/wav/Frozen.Echoes.wav" download class="hifi-link">⬇️ Télécharger en qualité HiFi (.wav)</a>
-            </p>
-
-        </div>
-    </section>
-
-    <section class="track" data-audio="assets/audio/mp3/Dawn.of.the.Wild.mp3">
-        <div class="cover-container">
-            <img src="assets/covers/Dawn.of.the.Wild.png" alt="Dawn of the Wild" class="cover" />
-            <div class="icon-overlay play"></div>
-        </div>
-        <div class="info">
-            <h2>Dawn of the Wild</h2>
-            <p><strong>“Dawn of the Wild”</strong> is a musical ode to the forest awakening from its long slumber. Written for piano, violin, and cello, it captures the hush before the first light, when the earth exhales and life stirs again.</p>
-            <p>Amidst the moss and morning mist, a lone stag stands still — guardian of the rebirth, witness to the breath of spring returning.</p>
-            <p>This is a music of renewal and quiet strength, where each note carries the scent of damp leaves, the promise of blooming, the pulse of life reborn.<br>
-                It speaks to the heart of those who still know how to listen to the woods.</p>
-
-            <div class="waveform"></div>
-            <p>
-                <a href="assets/audio/wav/Frozen.Echoes.wav" download class="hifi-link">⬇️ Télécharger en qualité HiFi (.wav)</a>
-            </p>
-        </div>
-    </section>
-
-    <section class="track" data-audio="assets/audio/mp3/Wings.Over.the.Fire.mp3">
-        <div class="cover-container">
-            <img src="assets/covers/Wings.Over.the.Fire.png" alt="Wings Over the Fire" class="cover" />
-            <div class="icon-overlay play"></div>
-        </div>
-        <div class="info">
-            <h2>Wings Over the Fire</h2>
-            <p><strong>“Wings Over the Fire”</strong> is a sonic journey through destruction and grace.</p>
-            <p>Composed for piano, violin, and cello, this album tells the story of a burning forest seen not from within the flames, but from above — from the steady, gliding perspective of an eagle in flight.</p>
-            <p>Each piece evokes the fragility of life, the violence of collapse, and the strange serenity that exists at a distance from catastrophe.<br>
-                It is a music of soaring lines and trembling textures, of embers and silence, of grief and dignity.</p>
-            <p>This is not a lament — but a vigil.</p>
-
-            <div class="waveform"></div>
-            <p>
-                <a href="assets/audio/wav/Frozen.Echoes.wav" download class="hifi-link">⬇️ Télécharger en qualité HiFi (.wav)</a>
-            </p>
-        </div>
-    </section>
-
-
-    <section class="track" data-audio="assets/audio/mp3/Dust.and.Silence.mp3">
-        <div class="cover-container">
-            <img src="assets/covers/Dust.and.Silence.png" alt="Dust and Silence" class="cover" />
-            <div class="icon-overlay play"></div>
-        </div>
-        <div class="info">
-            <h2>Dust and Silence</h2>
-            <p><strong>“Dust and Silence”</strong> is a solitary piano ballad that drifts across forgotten lands and fading memories. Each note falls like a footstep in the dust — soft, uncertain, and slow.</p>
-            <p>This is music for the spaces in between, where absence speaks louder than presence, and where melancholy becomes a gentle companion to the wandering soul.</p>
-
-            <div class="waveform"></div>
-            <p>
-                <a href="assets/audio/wav/Frozen.Echoes.wav" download class="hifi-link">⬇️ Télécharger en qualité HiFi (.wav)</a>
-            </p>
-        </div>
-    </section>
-
-</main>
-
+<main id="content"></main>
 
 <footer>
-    <p>&copy; 2025 Vincent Lagny – Version 1.28 - Musiques IA – Licence CC BY-NC-SA 4.0</p>
+    <p>&copy; 2025 Vincent Lagny – Version 1.29 – Licence CC BY-NC-SA 4.0</p>
 </footer>
 
 <script>
-    const tracks = document.querySelectorAll('.track');
-    const players = [];
-    let currentPlaying = null;
     let isHiFi = false;
+    let currentPlaying = null;
+    const players = [];
 
-    // Initialisation
-    tracks.forEach((track) => {
-        const container = track.querySelector('.waveform');
-        const coverContainer = track.querySelector('.cover-container');
-        const iconOverlay = track.querySelector('.icon-overlay');
-        const baseFilename = track.getAttribute('data-audio')
-            .replace(/^assets\/audio\/mp3\//, '')
-            .replace(/\.mp3$/, '');
+    function renderTracks(lang = 'en') {
+        fetch('tracks.json')
+            .then(res => res.json())
+            .then(data => {
+                const tracks = data[lang];
+                const container = document.getElementById('content');
+                container.innerHTML = '';
+                tracks.forEach(track => {
+                    const format = isHiFi ? 'wav' : 'mp3';
+                    const audioPath = `assets/audio/${format}/${track.file}.${format}`;
+                    const hifiPath = `assets/audio/wav/${track.file}.wav`;
 
-        const currentFormat = isHiFi ? 'wav' : 'mp3';
+                    const section = document.createElement('section');
+                    section.className = 'track';
+                    section.setAttribute('data-audio', audioPath);
 
-        const wavesurfer = WaveSurfer.create({
-            container,
-            waveColor: '#999',
-            progressColor: '#ff7b54',
-            height: 80,
-            responsive: true,
-            barWidth: 2,
-            cursorColor: '#fff'
-        });
+                    section.innerHTML = `
+          <div class="cover-container">
+            <img src="assets/covers/${track.cover}" class="cover" alt="${track.title}" />
+            <div class="icon-overlay play"></div>
+          </div>
+          <div class="info">
+            <h2>${track.title}</h2>
+            ${track.desc.map(p => `<p>${p}</p>`).join('')}
+            <div class="waveform"></div>
+            <p><a href="${hifiPath}" download class="hifi-link">⬇️ Download in HiFi (.wav)</a></p>
+          </div>
+        `;
 
-        wavesurfer.load(`assets/audio/${currentFormat}/${baseFilename}.${currentFormat}`);
-
-        coverContainer.onclick = () => {
-            if (currentPlaying && currentPlaying !== wavesurfer) {
-                currentPlaying.pause();
-            }
-            wavesurfer.playPause();
-            if (wavesurfer.isPlaying()) {
-                currentPlaying = wavesurfer;
-            }
-        };
-
-        wavesurfer.on('play', () => {
-            iconOverlay.classList.remove('play');
-            iconOverlay.classList.add('pause');
-        });
-
-        wavesurfer.on('pause', () => {
-            iconOverlay.classList.remove('pause');
-            iconOverlay.classList.add('play');
-        });
-
-        wavesurfer.on('finish', () => {
-            iconOverlay.classList.remove('pause');
-            iconOverlay.classList.add('play');
-            currentPlaying = null;
-        });
-
-        players.push({
-            wavesurfer,
-            baseFilename,
-            container,
-            iconOverlay,
-            trackElement: track
-        });
-    });
-</script>
-
-<script>
-    const translations = {
-        fr: {
-            title_frozen: "Échos Gelés",
-            desc1_frozen: "« Échos Gelés » est un hommage sonore aux paysages polaires et à la faune fantomatique de notre monde.",
-            desc2_frozen: "C’est une musique d’espace, de silence et de mémoire.<br>Elle parle à ceux qui savent encore écouter le froid.",
-            // Ajoute les autres textes ici
-        },
-        en: {
-            title_frozen: "Frozen Echoes",
-            desc1_frozen: "“Frozen Echoes” is a sonic tribute to polar landscapes and the ghostly fauna of our world.",
-            desc2_frozen: "It is a music of space, silence, and remembrance.<br>It speaks to the soul of those who still know how to listen to the cold.",
-            // Ajoute les autres textes ici
-        }
-    };
-
-    function setLanguage(lang) {
-        document.querySelectorAll('[data-i18n]').forEach(el => {
-            const key = el.getAttribute('data-i18n');
-            if (translations[lang] && translations[lang][key]) {
-                el.innerHTML = translations[lang][key];
-            }
-        });
-        localStorage.setItem('lang', lang);
+                    container.appendChild(section);
+                });
+                initializeWaveSurfers();
+            });
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
+    function initializeWaveSurfers() {
+        players.length = 0;
+        document.querySelectorAll('.track').forEach(track => {
+            const container = track.querySelector('.waveform');
+            const coverContainer = track.querySelector('.cover-container');
+            const iconOverlay = track.querySelector('.icon-overlay');
+            const baseFilename = track.getAttribute('data-audio').match(/([^/]+)\.(mp3|wav)$/)[1];
+            const format = isHiFi ? 'wav' : 'mp3';
+
+            const wavesurfer = WaveSurfer.create({
+                container,
+                waveColor: '#999',
+                progressColor: '#ff7b54',
+                height: 80,
+                responsive: true,
+                barWidth: 2,
+                cursorColor: '#fff'
+            });
+
+            wavesurfer.load(`assets/audio/${format}/${baseFilename}.${format}`);
+
+            coverContainer.onclick = () => {
+                if (currentPlaying && currentPlaying !== wavesurfer) {
+                    currentPlaying.pause();
+                }
+                wavesurfer.playPause();
+                if (wavesurfer.isPlaying()) {
+                    currentPlaying = wavesurfer;
+                }
+            };
+
+            wavesurfer.on('play', () => {
+                iconOverlay.classList.remove('play');
+                iconOverlay.classList.add('pause');
+            });
+            wavesurfer.on('pause', () => {
+                iconOverlay.classList.remove('pause');
+                iconOverlay.classList.add('play');
+            });
+            wavesurfer.on('finish', () => {
+                iconOverlay.classList.remove('pause');
+                iconOverlay.classList.add('play');
+                currentPlaying = null;
+            });
+
+            players.push({ wavesurfer });
+        });
+    }
+
+    function setLanguage(lang) {
+        localStorage.setItem('lang', lang);
+        renderTracks(lang);
+        document.getElementById('header-sub').textContent =
+            lang === 'fr'
+                ? "Des musiques originales, composées par un humain et une IA — un reflet musical du climat."
+                : "Original music with a human soul and an AI spark";
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
         const lang = localStorage.getItem('lang') || 'en';
         setLanguage(lang);
     });
 </script>
-
-
-
-<!-- Default Statcounter code for Music https://vincentlagny.github.io/music/
--->
-<script type="text/javascript">
-    var sc_project=13153336;
-    var sc_invisible=1;
-    var sc_security="eef9a721";
-</script>
-<script type="text/javascript"
-        src="https://www.statcounter.com/counter/counter.js" async></script>
-<noscript><div class="statcounter"><a title="Web Analytics"
-                                      href="https://statcounter.com/" target="_blank"><img class="statcounter"
-                                                                                           src="https://c.statcounter.com/13153336/0/eef9a721/1/" alt="Web Analytics"
-                                                                                           referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
-<!-- End of Statcounter Code -->
-
-
-
 
 </body>
 </html>
