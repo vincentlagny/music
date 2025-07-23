@@ -408,14 +408,22 @@ input:checked + .slider:before {
 #volume-control button {
     background: none;
     border: none;
-    padding: 0;
+    padding: 4px;
+    margin: 0;
     cursor: pointer;
+    line-height: 0; /* ✅ élimine l'espace vertical inutile */
+    display: flex;  /* ✅ assure que le svg remplit bien le bouton */
+    align-items: center;
+    justify-content: center;
 }
 
+
 #volume-control svg {
-    transition: fill 0.2s ease;
-    opacity: 0.7;
+    width: 24px;
+    height: 24px;
+    pointer-events: none; /* évite que le svg bloque le hover du parent */
 }
+
 
 #volume-control button.active {
     color: #000;
@@ -424,8 +432,11 @@ input:checked + .slider:before {
 }
 
 #volume-control input[type="range"] {
-    width: 100px;
+    width: calc(100% - 16px); /* Laisse 8px de marge de chaque côté */
+    margin: 0 auto;            /* Centre horizontalement */
+    display: block;
 }
+
 
 #volume-control button:hover svg,
 #volume-control button.active svg {
