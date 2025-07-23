@@ -27,20 +27,20 @@
 <main id="content"></main>
 
 <div id="volume-control">
-    <button id="rewind-global" title="Rewind current track">
+    <button id="rewind-global" title="Rewind current track" aria-label="Rewind current track">
         <svg viewBox="0 0 24 24" width="24" height="24" fill="#888">
             <path d="M11 18V6l-8.5 6L11 18zM13 6v12l8.5-6L13 6z"/>
         </svg>
     </button>
 
-    <button id="loop-track" title="Loop current track">
+    <button id="loop-track" title="Loop current track" aria-label="Loop current track">
         <svg viewBox="0 0 24 24" width="24" height="24" fill="#888" class="icon-loop">
             <path d="M7 7h9v2l3-3-3-3v2H6c-1.1 0-2 .9-2 2v4h2V7z"/>
             <text x="17" y="21" font-size="8" fill="#888">1</text>
         </svg>
     </button>
 
-    <button id="loop-all" title="Loop all tracks">
+    <button id="loop-all" title="Loop all tracks"  aria-label="Loop all tracks">
         <svg viewBox="0 0 24 24" width="24" height="24" fill="#888" class="icon-loop-all">
             <path d="M7 7h9v2l3-3-3-3v2H6c-1.1 0-2 .9-2 2v4h2V7z"/>
             <text x="15" y="21" font-size="8" fill="#888">∞</text>
@@ -58,7 +58,7 @@
 </div>
 
 <footer>
-    <p>&copy; 2025 Vincent Lagny – Version 1.34b – Licence CC BY-NC-SA 4.0</p>
+    <p>&copy; 2025 Vincent Lagny – Version 1.35 – Licence CC BY-NC-SA 4.0</p>
 </footer>
 
 <script>
@@ -193,22 +193,17 @@
                 iconOverlay.classList.remove('pause');
                 iconOverlay.classList.add('play');
 
-                if (loopCurrentTrack) {
+                if (loopMode === 1 && currentPlaying === wavesurfer) {
                     wavesurfer.seekTo(0);
                     wavesurfer.play();
-                } else if (loopAllTracks) {
-                    const currentIndex = players.findIndex(p => p.wavesurfer === wavesurfer);
-                    const nextIndex = (currentIndex + 1) % players.length;
-                    const next = players[nextIndex].wavesurfer;
-                    currentPlaying = next;
-                    next.seekTo(0);
-                    next.play();
+                } else if (loopMode === 2) {
+                    wavesurfer.seekTo(0);
+                    wavesurfer.play();
                 } else {
                     currentPlaying = null;
-                    const total = formatTime(wavesurfer.getDuration());
-                    durationEl.textContent = `00:00 / ${total}`;
                 }
             });
+
 
 
             players.push({ wavesurfer });
@@ -229,6 +224,12 @@
         setLanguage(lang);
     });
 
+
+    document.getElementById('rewind-global').addEventListener('click', () => {
+        if (currentPlaying) {
+            currentPlaying.seekTo(0);
+        }
+    });
 
 
     // Références des nouveaux boutons globaux
