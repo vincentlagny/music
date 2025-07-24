@@ -310,11 +310,12 @@
                 wavesurfer.seekTo(percent); // méthode officielle de WaveSurfer
             });
 
-
-
-
-            // players.push({ wavesurfer });
-            players.push({ wavesurfer, gainNode });
+            if (isIOS) {
+                players.push({ wavesurfer, gainNode });
+            }
+            else {
+                    players.push({ wavesurfer });
+            }
         });
     }
 
@@ -463,16 +464,21 @@
     volumeSlider.addEventListener('input', () => {
         const newVolume = parseFloat(volumeSlider.value);
         players.forEach(({ wavesurfer, gainNode }) => {
-            if (isIOS && gainNode) {
-                gainNode.gain.value = newVolume;
-            } else {
-                wavesurfer.setVolume(newVolume);
+            try {
+                if (isIOS && gainNode && gainNode.gain) {
+                    gainNode.gain.value = newVolume;
+                } else {
+                    wavesurfer.setVolume(newVolume);
+                }
+            } catch (e) {
+                console.warn('🔇 Volume set failed:', e);
             }
         });
         isMuted = newVolume === 0;
         updateVolumeIcon();
         lastVolume = newVolume;
     });
+
 
     /*
     muteToggle.addEventListener('click', () => {
@@ -491,15 +497,22 @@
         isMuted = !isMuted;
         const volumeToSet = isMuted ? 0 : lastVolume;
         volumeSlider.value = volumeToSet;
+
         players.forEach(({ wavesurfer, gainNode }) => {
-            if (isIOS && gainNode) {
-                gainNode.gain.value = volumeToSet;
-            } else {
-                wavesurfer.setVolume(volumeToSet);
+            try {
+                if (isIOS && gainNode && gainNode.gain) {
+                    gainNode.gain.value = volumeToSet;
+                } else {
+                    wavesurfer.setVolume(volumeToSet);
+                }
+            } catch (e) {
+                console.warn('🔇 Mute toggle failed:', e);
             }
         });
+
         updateVolumeIcon();
     });
+
 
 
     function updateVolumeIcon() {
