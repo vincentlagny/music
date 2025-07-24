@@ -226,7 +226,7 @@
 
             wavesurfer.on('ready', () => {
 
-                // Gestion manuelle du gain (Volume)
+                // Gestion manuelle du gain (Volume iOS)
                 const backend = wavesurfer.backend;
                 backend.setFilter(gainNode); // 👈 applique le gain node
 
@@ -234,7 +234,8 @@
                 const total = formatTime(wavesurfer.getDuration());
                 durationEl.textContent = `00:00 / ${total}`;
             });
-            players.push({ wavesurfer, gainNode });
+            // Volume iOS
+            players.push({ wavesurfer });
 
             wavesurfer.on('audioprocess', () => {
                 const current = formatTime(wavesurfer.getCurrentTime());
@@ -327,9 +328,7 @@
         if (volumeSlider) {
             volumeSlider.addEventListener('input', () => {
                 const newVolume = parseFloat(volumeSlider.value);
-                players.forEach(({ gainNode }) => {
-                    if (gainNode) gainNode.gain.value = newVolume;
-                });
+                gainNode.gain.value = newVolume;
                 isMuted = newVolume === 0;
                 updateVolumeIcon();
                 lastVolume = newVolume;
@@ -463,10 +462,10 @@
         if (isMuted) {
 
             // Version Volume PC
-            players.forEach(({ wavesurfer }) => wavesurfer.setVolume(0));
+            // players.forEach(({ wavesurfer }) => wavesurfer.setVolume(0));
 
             // Version Volume iOS
-            // players.forEach(({ gainNode }) => gainNode.gain.value = 0);
+            gainNode.gain.value = 0;
 
             // Code commun
             volumeSlider.value = 0;
@@ -476,7 +475,7 @@
             // players.forEach(({ wavesurfer }) => wavesurfer.setVolume(lastVolume));
 
             // Version Volume iOS
-            players.forEach(({ gainNode }) => gainNode.gain.value = lastVolume);
+            gainNode.gain.value = lastVolume;
 
             // Code commun
             volumeSlider.value = lastVolume;
