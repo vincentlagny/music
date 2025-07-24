@@ -227,8 +227,11 @@
             wavesurfer.on('ready', () => {
 
                 // Gestion manuelle du gain (Volume iOS)
-                const backend = wavesurfer.backend;
-                backend.setFilter(gainNode); // 👈 applique le gain node
+                setTimeout(() => {
+                    if (wavesurfer.backend && gainNode) {
+                        wavesurfer.backend.setFilter(gainNode);
+                    }
+                }, 100);
 
                 // Affichage de la durée
                 const total = formatTime(wavesurfer.getDuration());
