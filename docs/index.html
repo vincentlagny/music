@@ -206,7 +206,7 @@
                 audioScriptProcessor: null, // laisse WaveSurfer gérer
             });
 
-            wavesurfer.setVolume(parseFloat(volumeSlider.value));
+            // wavesurfer.setVolume(parseFloat(volumeSlider.value));
             wavesurfer.load(`assets/audio/${format}/${baseFilename}.${format}`);
 
             coverContainer.onclick = () => {
