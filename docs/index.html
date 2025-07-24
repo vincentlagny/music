@@ -245,6 +245,9 @@
                     }
                 }, 100);
 
+                // Volume de secours si gainNode ignoré (ex : Safari iOS)
+                wavesurfer.setVolume(parseFloat(volumeSlider.value));
+
                 // Affichage de la durée
                 const total = formatTime(wavesurfer.getDuration());
                 durationEl.textContent = `00:00 / ${total}`;
@@ -473,7 +476,7 @@
         if (isMuted) {
 
             // Version Volume PC
-            // players.forEach(({ wavesurfer }) => wavesurfer.setVolume(0));
+            players.forEach(({ wavesurfer }) => wavesurfer.setVolume(0));
 
             // Version Volume iOS
             gainNode.gain.value = 0;
@@ -483,7 +486,7 @@
         } else {
 
             // Version Volume PC
-            // players.forEach(({ wavesurfer }) => wavesurfer.setVolume(lastVolume));
+            players.forEach(({ wavesurfer }) => wavesurfer.setVolume(lastVolume));
 
             // Version Volume iOS
             gainNode.gain.value = lastVolume;
