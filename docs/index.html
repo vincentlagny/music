@@ -174,8 +174,10 @@
     }
 
 
+    let gainNode = null;
     function initializeWaveSurfers() {
         players.length = 0;
+
         document.querySelectorAll('.track').forEach(track => {
             const container = track.querySelector('.waveform');
             const durationEl = track.querySelector('.duration');
@@ -199,7 +201,6 @@
             });
 
             // 🎚️🔒 Ajout spécifique iOS : gestion du volume via GainNode uniquement sous iOS
-            let gainNode = null;
             if (isIOS) {
                 const audioContext = wavesurfer.backend.ac;
                 gainNode = audioContext.createGain();
@@ -312,7 +313,8 @@
 
 
 
-            players.push({ wavesurfer });
+            // players.push({ wavesurfer });
+            players.push({ wavesurfer, gainNode });
         });
     }
 
