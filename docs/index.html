@@ -17,6 +17,12 @@
             <div class="subtitle" id="header-sub">Original music with a human soul and an AI spark</div>
         </div>
     </div>
+    <div class="album-menu">
+        <select id="album-select" onchange="selectAlbum(this.value)">
+            <option value="album1">Album1</option>
+            <option value="album2">Album2</option>
+        </select>
+    </div>
     <div class="language-switch">
         <button onclick="setLanguage('fr')">🇫🇷 FR</button>
         <button onclick="setLanguage('en')">🇬🇧 EN</button>
@@ -106,7 +112,7 @@
     let currentPlaying = null;
     const players = [];
     let loopMode = 0; // 0 = no loop, 1 = loop current, 2 = loop all
-
+    let currentAlbum = 'album1';
     const translations = {
         en: {
             downloadHifi: "⬇️ Download in HiFi (.flac)"
@@ -115,7 +121,6 @@
             downloadHifi: "⬇️ Télécharger en HiFi (.flac)"
         }
     };
-
     const isIOS = /iP(hone|od|ad)/.test(navigator.platform) ||
         (navigator.userAgent.includes("Mac") && "ontouchend" in document);
 
@@ -134,14 +139,16 @@
         return url; // fallback: retourne l'URL telle quelle si ce n’est pas un lien GDrive
     }
 
-    function renderTracks(lang = 'en') {
+    //
+    function renderTracks(lang = currentLang, album = currentAlbum) {
         fetch('./assets/data/tracks.json')
             .then(res => res.json())
             .then(data => {
                 const { tracks, desc } = data;
+                const filtered = tracks.filter(t => t.album === album);
                 const container = document.getElementById('content');
                 container.innerHTML = '';
-                tracks.forEach(track => {
+                filtered.forEach(track => {
                     const trackDesc = desc[lang][track.id] || [];
                     const format = isHiFi ? 'wav' : 'mp3';
                     const audioPath = `assets/audio/${format}/${track.file}.${format}`;
@@ -173,6 +180,10 @@
             });
     }
 
+    function selectAlbum(album) {
+        currentAlbum = album;
+        renderTracks(currentLang, currentAlbum);
+    }
 
     function initializeWaveSurfers() {
         players.length = 0;
@@ -298,8 +309,9 @@
 
     ////////////////////////////// GESTION DE LA LANGUE
     function setLanguage(lang) {
+        currentLang = lang;
         localStorage.setItem('lang', lang);
-        renderTracks(lang);
+        renderTracks(currentLang, currentAlbum);
         document.getElementById('header-sub').textContent =
             lang === 'fr'
                 ? "Des musiques originales, composées par un humain et une IA."
@@ -307,8 +319,15 @@
     }
 
     window.addEventListener('DOMContentLoaded', () => {
-        const lang = localStorage.getItem('lang') || 'en';
-        setLanguage(lang);
+        currentLang = localStorage.getItem('lang') || 'en';
+        setLanguage(currentLang);
+        renderTracks(currentLang, currentAlbum);
+
+        // Hide the volume slider on iOS
+        if (isIOS) {
+            const slider = document.getElementById('volume-slider');
+            if (slider) slider.style.display = 'none';
+        }
     });
 
     ////////////////////////////// VERSION ET PIED DE PAGE

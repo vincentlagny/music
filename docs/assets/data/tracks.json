@@ -1,6 +1,7 @@
 {
   "tracks": [
     {
+      "album": "album1",
       "id": "Frozen.Echoes",
       "title": "Frozen Echoes",
       "file": "Frozen.Echoes",
@@ -8,6 +9,7 @@
       "hifi": "https://drive.google.com/file/d/16r07hL2Z862SFiDGeSpDf1QXmAS5jDmN/view?usp=sharing"
     },
     {
+      "album": "album1",
       "id": "Dawn.of.the.Wild",
       "title": "Dawn of the Wild",
       "file": "Dawn.of.the.Wild",
@@ -15,6 +17,7 @@
       "hifi": "https://drive.google.com/file/d/1paTLUEggUg7FoJDmOJZuracdsknNNVpv/view?usp=sharing"
     },
     {
+      "album": "album1",
       "id": "Wings.Over.the.Fire",
       "title": "Wings Over the Fire",
       "file": "Wings.Over.the.Fire",
@@ -22,6 +25,7 @@
       "hifi": "https://drive.google.com/file/d/1kVUHmPMTWcCmgr05mA4ql_YjlS0wC7F4/view?usp=sharing"
     },
     {
+      "album": "album2",
       "id": "Dust.and.Silence",
       "title": "Dust and Silence",
       "file": "Dust.and.Silence",
@@ -29,6 +33,7 @@
       "hifi": "https://drive.google.com/file/d/1x_m6eE0tmxwD1RzI_QEOtLVausTQJpXF/view?usp=sharing"
     },
     {
+      "album": "album2",
       "id": "The.Turning.Green",
       "title": "The Turning Green",
       "file": "The.Turning.Green",

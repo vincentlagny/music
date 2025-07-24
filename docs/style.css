@@ -3,7 +3,7 @@ body {
     background-color: #121212;
     color: #f1f1f1;
     margin: 0;
-    padding: 0;
+    padding: 80px 0 0 0; /* espace pour le bandeau fixe */
 }
 
 header {
@@ -286,8 +286,6 @@ input:checked + .slider:before {
 }
 
 
-
-
 .minimal-header {
     background-color: #000;
     color: #fff;
@@ -298,6 +296,11 @@ input:checked + .slider:before {
     justify-content: flex-start; /* Aligne le contenu à gauche */
     font-family: 'Open Sans', sans-serif;
     border-bottom: 1px solid #222;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
 }
 
 .brand {
@@ -398,6 +401,7 @@ input:checked + .slider:before {
     background: rgba(100, 100, 100, 1);
     border-radius: 8px;
     padding: 8px;
+    z-index: 1000;
     width: 240px;
     display: flex;
     flex-direction: column;
