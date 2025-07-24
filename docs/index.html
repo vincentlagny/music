@@ -205,13 +205,13 @@
 
             coverContainer.onclick = () => {
 
-                // TESTU
-                wavesurfer.setVolume(parseFloat(volumeSlider.value));
 
                 if (currentPlaying && currentPlaying !== wavesurfer) {
                     currentPlaying.pause();
                 }
                 wavesurfer.playPause();
+                // TESTU
+                wavesurfer.setVolume(parseFloat(volumeSlider.value));
                 currentPlaying = wavesurfer;
 
                 // 🎵 Mise à jour de la pochette dans le bloc global
