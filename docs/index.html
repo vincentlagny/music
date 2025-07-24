@@ -116,11 +116,6 @@
         }
     };
 
-    ////////////////////////////// Gestion du gain (pour la gestion du volume sous iOS)
-    const audioContext = WaveSurfer.create.getAudioContext(); // 👈 récupère l’audioContext global
-    const gainNode = audioContext.createGain(); // 👈 crée un noeud de gain
-    gainNode.gain.value = parseFloat(volumeSlider.value); // volume initial
-
     ////////////////////////////// Fonctions de formatages
     function formatTime(seconds) {
         const m = Math.floor(seconds / 60);
@@ -320,6 +315,13 @@
 
     ////////////////////////////// DOMContentLoaded
     window.addEventListener('DOMContentLoaded', () => {
+
+        ////////////////////////////// Gestion du gain (pour la gestion du volume sous iOS)
+        const audioContext = WaveSurfer.create.getAudioContext(); // 👈 récupère l’audioContext global
+        const gainNode = audioContext.createGain(); // 👈 crée un noeud de gain
+        const volumeSlider = document.getElementById('volume-slider');
+        gainNode.gain.value = parseFloat(volumeSlider.value); // volume initial
+
         const lang = localStorage.getItem('lang') || 'en';
         setLanguage(lang);
     });
@@ -438,7 +440,6 @@
     const volumeIcon = document.getElementById('volume-icon');
     const pathOn = volumeIcon.querySelector('#volume-on');
     const pathOff = volumeIcon.querySelector('#volume-off');
-    const volumeSlider = document.getElementById('volume-slider');
     let isMuted = false;
     let lastVolume = 1;
 
