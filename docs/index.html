@@ -230,7 +230,18 @@
                 // Gestion manuelle du gain (Volume iOS)
                 setTimeout(() => {
                     if (wavesurfer.backend && gainNode) {
-                        wavesurfer.backend.setFilter(gainNode);
+                        const source = wavesurfer.backend.bufferSource;
+
+                        try {
+                            // Déconnecte la sortie directe s'il y en a une
+                            source.disconnect();
+                        } catch (e) {
+                            // Rien à déconnecter
+                        }
+
+                        // Reconnecte à gainNode puis à la destination
+                        source.connect(gainNode);
+                        gainNode.connect(wavesurfer.backend.ac.destination);
                     }
                 }, 100);
 
