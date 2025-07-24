@@ -174,7 +174,6 @@
     }
 
 
-    let gainNode = null;
     function initializeWaveSurfers() {
         players.length = 0;
 
@@ -200,32 +199,15 @@
                 cursorColor: '#fff'
             });
 
-            // 🎚️🔒 Ajout spécifique iOS : gestion du volume via GainNode uniquement sous iOS
-            if (isIOS) {
-                const audioContext = wavesurfer.backend.ac;
-                gainNode = audioContext.createGain();
-                gainNode.gain.value = parseFloat(volumeSlider.value);
-
-                // Retarde la connexion jusqu'à ce que bufferSource soit prêt
-                wavesurfer.on('ready', () => {
-                    try {
-                        const source = wavesurfer.backend.bufferSource;
-                        if (source) {
-                            source.disconnect();
-                            source.connect(gainNode);
-                            gainNode.connect(audioContext.destination);
-                        }
-                    } catch (e) {
-                        console.warn('🔇 iOS volume setup failed:', e);
-                    }
-                });
-            } else {
-                // 🌍 Tous les autres navigateurs → volume normal
-                wavesurfer.setVolume(parseFloat(volumeSlider.value));
-            }
+            // 🌍 Tous les autres navigateurs → volume normal
+            wavesurfer.setVolume(parseFloat(volumeSlider.value));
             wavesurfer.load(`assets/audio/${format}/${baseFilename}.${format}`);
 
             coverContainer.onclick = () => {
+
+                // TESTU
+                wavesurfer.setVolume(parseFloat(volumeSlider.value));
+
                 if (currentPlaying && currentPlaying !== wavesurfer) {
                     currentPlaying.pause();
                 }
@@ -310,12 +292,7 @@
                 wavesurfer.seekTo(percent); // méthode officielle de WaveSurfer
             });
 
-            if (isIOS) {
-                players.push({ wavesurfer, gainNode });
-            }
-            else {
-                    players.push({ wavesurfer });
-            }
+            players.push({ wavesurfer });
         });
     }
 
@@ -463,13 +440,9 @@
      */
     volumeSlider.addEventListener('input', () => {
         const newVolume = parseFloat(volumeSlider.value);
-        players.forEach(({ wavesurfer, gainNode }) => {
+        players.forEach(({ wavesurfer }) => {
             try {
-                if (isIOS && gainNode && gainNode.gain) {
-                    gainNode.gain.value = newVolume;
-                } else {
-                    wavesurfer.setVolume(newVolume);
-                }
+                wavesurfer.setVolume(newVolume);
             } catch (e) {
                 console.warn('🔇 Volume set failed:', e);
             }
@@ -498,13 +471,9 @@
         const volumeToSet = isMuted ? 0 : lastVolume;
         volumeSlider.value = volumeToSet;
 
-        players.forEach(({ wavesurfer, gainNode }) => {
+        players.forEach(({ wavesurfer }) => {
             try {
-                if (isIOS && gainNode && gainNode.gain) {
-                    gainNode.gain.value = volumeToSet;
-                } else {
-                    wavesurfer.setVolume(volumeToSet);
-                }
+                wavesurfer.setVolume(volumeToSet);
             } catch (e) {
                 console.warn('🔇 Mute toggle failed:', e);
             }
