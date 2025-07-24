@@ -1,3 +1,4 @@
+<!-- index.html épuré -->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -106,6 +107,7 @@
     let currentPlaying = null;
     const players = [];
     let loopMode = 0; // 0 = no loop, 1 = loop current, 2 = loop all
+
     const translations = {
         en: {
             downloadHifi: "⬇️ Download in HiFi (.flac)"
@@ -115,12 +117,6 @@
         }
     };
 
-    // Variables de gestion locale du gain (pour volume sous iOS)
-    let volumeSlider = null; // 👈 déclaration globale
-    let audioContext; // 👈 en haut
-    let gainNode;     // 👈 en haut
-
-    ////////////////////////////// Fonctions de formatages
     function formatTime(seconds) {
         const m = Math.floor(seconds / 60);
         const s = Math.floor(seconds % 60);
@@ -135,11 +131,7 @@
         }
         return url; // fallback: retourne l'URL telle quelle si ce n’est pas un lien GDrive
     }
-    function isIOS() {
-        return /iPad|iPhone|iPod/.test(navigator.userAgent);
-    }
 
-    ////////////////////////////// Création des titres
     function renderTracks(lang = 'en') {
         fetch('./assets/data/tracks.json')
             .then(res => res.json())
@@ -179,7 +171,7 @@
             });
     }
 
-    ////////////////////////////// WaveSurfer
+
     function initializeWaveSurfers() {
         players.length = 0;
         document.querySelectorAll('.track').forEach(track => {
@@ -201,13 +193,10 @@
                 height: 80,
                 responsive: true,
                 barWidth: 2,
-                cursorColor: '#fff',
-                backend: 'WebAudio', // 👈 important iOS !
-                audioContext: () => audioContext,
-                audioScriptProcessor: null, // laisse WaveSurfer gérer
+                cursorColor: '#fff'
             });
 
-            // wavesurfer.setVolume(parseFloat(volumeSlider.value));
+            wavesurfer.setVolume(parseFloat(volumeSlider.value));
             wavesurfer.load(`assets/audio/${format}/${baseFilename}.${format}`);
 
             coverContainer.onclick = () => {
@@ -226,32 +215,10 @@
             };
 
             wavesurfer.on('ready', () => {
-
-                // Gestion manuelle du gain (Volume iOS)
-                setTimeout(() => {
-                    if (wavesurfer.backend && gainNode) {
-                        const source = wavesurfer.backend.bufferSource;
-
-                        try {
-                            // Déconnecte la sortie directe s'il y en a une
-                            source.disconnect();
-                        } catch (e) {
-                            // Rien à déconnecter
-                        }
-
-                        // Reconnecte à gainNode puis à la destination
-                        source.connect(gainNode);
-                        gainNode.connect(wavesurfer.backend.ac.destination);
-                    }
-                }, 100);
-
-                // Volume de secours si gainNode ignoré (ex : Safari iOS)
-                wavesurfer.setVolume(parseFloat(volumeSlider.value));
-
-                // Affichage de la durée
                 const total = formatTime(wavesurfer.getDuration());
                 durationEl.textContent = `00:00 / ${total}`;
             });
+
 
             wavesurfer.on('audioprocess', () => {
                 const current = formatTime(wavesurfer.getCurrentTime());
@@ -317,6 +284,9 @@
                 wavesurfer.seekTo(percent); // méthode officielle de WaveSurfer
             });
 
+
+
+
             players.push({ wavesurfer });
         });
     }
@@ -327,29 +297,11 @@
         renderTracks(lang);
         document.getElementById('header-sub').textContent =
             lang === 'fr'
-                ? "Des musiques originales, composées par un humain et une IA."
+                ? "Des musiques originales, composées par un humain et une IA — un reflet musical du climat."
                 : "Original music with a human soul and an AI spark";
     }
 
-    ////////////////////////////// DOMContentLoaded
     window.addEventListener('DOMContentLoaded', () => {
-
-        ////////////////////////////// Gestion du gain (pour la gestion du volume sous iOS)
-        audioContext = new (window.AudioContext || window.webkitAudioContext)();
-        gainNode = audioContext.createGain(); // 👈 crée un noeud de gain
-        gainNode.connect(audioContext.destination); // ✅ nécessaire
-        volumeSlider = document.getElementById('volume-slider');
-        if (volumeSlider) {
-            volumeSlider.addEventListener('input', () => {
-                const newVolume = parseFloat(volumeSlider.value);
-                gainNode.gain.value = newVolume;
-                isMuted = newVolume === 0;
-                updateVolumeIcon();
-                lastVolume = newVolume;
-            });
-            gainNode.gain.value = parseFloat(volumeSlider.value || 1); // volume initial
-        }
-
         const lang = localStorage.getItem('lang') || 'en';
         setLanguage(lang);
     });
@@ -468,30 +420,25 @@
     const volumeIcon = document.getElementById('volume-icon');
     const pathOn = volumeIcon.querySelector('#volume-on');
     const pathOff = volumeIcon.querySelector('#volume-off');
+    const volumeSlider = document.getElementById('volume-slider');
     let isMuted = false;
     let lastVolume = 1;
+
+    volumeSlider.addEventListener('input', () => {
+        const newVolume = parseFloat(volumeSlider.value);
+        players.forEach(({ wavesurfer }) => wavesurfer.setVolume(newVolume));
+        isMuted = newVolume === 0;
+        updateVolumeIcon();
+        lastVolume = newVolume;
+    });
 
     muteToggle.addEventListener('click', () => {
         isMuted = !isMuted;
         if (isMuted) {
-
-            // Version Volume PC
             players.forEach(({ wavesurfer }) => wavesurfer.setVolume(0));
-
-            // Version Volume iOS
-            gainNode.gain.value = 0;
-
-            // Code commun
             volumeSlider.value = 0;
         } else {
-
-            // Version Volume PC
             players.forEach(({ wavesurfer }) => wavesurfer.setVolume(lastVolume));
-
-            // Version Volume iOS
-            gainNode.gain.value = lastVolume;
-
-            // Code commun
             volumeSlider.value = lastVolume;
         }
         updateVolumeIcon();
