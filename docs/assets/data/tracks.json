@@ -40,24 +40,14 @@
       "cover": "CD1.The.Turning.Green.png",
       "hifi": "https://drive.google.com/file/d/1ItLvIKVPpQnyr4gOoLhuY4WlmE9_-DPx/view?usp=sharing"
     },
-
     {
-      "album": "album2",
-      "id": "Tanos",
-      "title": "Tanos",
-      "file": "CD2.Tanos",
-      "cover": "CD2.Tanos.png",
-      "hifi": "https://drive.google.com/file/d/17WbHJ0BxKjjeOkYBa2KSizyHiZykM1CV/view?usp=sharing"
+      "album": "album1",
+      "id": "The.Last.Embrace",
+      "title": "The Last Embrace",
+      "file": "CD1.The.Last.Embrace",
+      "cover": "CD1.The.Last.Embrace.png",
+      "hifi": "https://drive.google.com/file/d/1NV7EBmlV5mNh5NVQZaimoiE6RUMXmDCc/view?usp=sharing"
     },
-    {
-      "album": "album2",
-      "id": "Aldebaran",
-      "title": "Aldebaran",
-      "file": "CD2.Aldebaran",
-      "cover": "CD2.Aldebaran.png",
-      "hifi": "https://drive.google.com/file/d/1Jjn7_fqUw4SW9hi4OPnWp-95WWkmqmSB/view?usp=sharing"
-    },
-
     {
       "album": "album3",
       "id": "Never.Surrender",
@@ -97,8 +87,65 @@
       "file": "CD3.Forever.80s",
       "cover": "CD3.Forever.80s.png",
       "hifi": "https://drive.google.com/file/d/1arV4ZZqqrwfB43UTCqC7WNAzEo1ZJNng/view?usp=sharing"
-    }
+    },
+    {
+      "album": "album3",
+      "id": "Darkflow",
+      "title": "Darkflow",
+      "file": "CD3.Darkflow",
+      "cover": "CD3.Darkflow.png",
+      "hifi": "https://drive.google.com/file/d/1lZZDTsQYbKJz2qqR6ZxElq8OiZD7JMEa/view?usp=sharing"
+    },
+    {
+      "album": "album2",
+      "id": "Deep.Expanse",
+      "title": "Deep Expanse",
+      "file": "CD2.Deep.Expanse",
+      "cover": "CD2.Deep.Expanse.png",
+      "hifi": "https://drive.google.com/file/d/17lnrcgGaq2r0NgswXA1txeetDExm79NR/view?usp=sharing"
+    },
+    {
+      "album": "album2",
+      "id": "Ash.of.Light",
+      "title": "Ash of Light",
+      "file": "CD2.Ash.of.Light",
+      "cover": "CD2.Ash.of.Light.png",
+      "hifi": "https://drive.google.com/file/d/1yJbBmNV-w9YUvIKqrINRR3PPgqfS76OB/view?usp=sharing"
+    },
+    {
+      "album": "album2",
+      "id": "No.Way.Back",
+      "title": "No Way Back",
+      "file": "CD2.No.Way.Back",
+      "cover": "CD2.No.Way.Back.png",
+      "hifi": "https://drive.google.com/file/d/1l4G4YlQUJe9ygc30v9NG0M_BWVFW272X/view?usp=sharing"
+    },
+    {
+      "album": "album2",
+      "id": "Supernova.Rush",
+      "title": "Supernova Rush",
+      "file": "CD2.Supernova.Rush",
+      "cover": "CD2.Supernova.Rush.png",
+      "hifi": "https://drive.google.com/file/d/1hzymnW77YOqAmxeh8n65PJ5kBmMiOuVq/view?usp=sharing"
+    },
 
+
+    {
+      "album": "album2",
+      "id": "Tanos",
+      "title": "Tanos",
+      "file": "CD2.Tanos",
+      "cover": "CD2.Tanos.png",
+      "hifi": "https://drive.google.com/file/d/17WbHJ0BxKjjeOkYBa2KSizyHiZykM1CV/view?usp=sharing"
+    },
+    {
+      "album": "album2",
+      "id": "Aldebaran",
+      "title": "Aldebaran",
+      "file": "CD2.Aldebaran",
+      "cover": "CD2.Aldebaran.png",
+      "hifi": "https://drive.google.com/file/d/1Jjn7_fqUw4SW9hi4OPnWp-95WWkmqmSB/view?usp=sharing"
+    }
   ],
   "desc": {
     "en": {
@@ -127,6 +174,12 @@
         "It invites the listener into a quiet dialogue with time itself, echoing the cycles of growth, decay, and renewal that shape the forest floor.",
         "Beneath its fragile melodies lies the steady rhythm of something older than us: the roots that hold, the silence that remembers, and the earth that continues — even when we forget to listen."
       ],
+      "The.Last.Embrace": [
+        "Yhis piece is a quiet tribute to chimpanzees facing deforestation and poaching.",
+        "Slow piano, minor harmonies, and dark ambient textures evoke a dignified, sacred sorrow.",
+        "It is music of instinctive protection, silent love, and unspoken alarm — a tragic lullaby echoing on the edge of a vanishing world."
+      ],
+
 
       "Aldebaran": [
         "This instrumental track was created with GarageBand as a sonic tribute to the worlds imagined by Léo in the Aldebaran graphic novel series.",
@@ -164,11 +217,36 @@
         "Created with GarageBand, this groovy track celebrates personal flow, boldness of self, and freedom of perception.",
         "Driven by fluid rhythms, funky textures, and smooth energy, it invites you to shape your world — your way.",
         "It’s a track that dances between atoms and photons — a wink to the colorful matter of our thoughts, a free pulse that says: forge your own reality."
+      ],
+      "Darkflow": [
+        "Composed with AI, this immersive electronic piece evokes space, tension, and inner thrust.",
+        "Dark layers and slow pulses build a hypnotic, cinematic progression that draws the listener in.",
+        "It’s a soundtrack for mental propulsion — hovering between void and motion, echoing the dense, magnetic spirit of early-2000s electro with a slow-burning intensity."
+      ],
+      "Deep.Expanse": [
+        "This piece evokes interstellar exploration, blending suspended tension with cosmic beauty.",
+        "Slow ambient layers open like the hush of zero gravity, giving way to a melancholic orchestral rise.",
+        "Cellos and violins express the majestic solitude of the unknown — a journey both spatial and internal, filled with awe, fragility, and the weight of the void."
+      ],
+      "Ash.of.Light": [
+        "A slow, heavy progression, like descending into a cosmic abyss.",
+        "Distorted synths, crushing sub-bass, and a ghostly piano sustain an oppressive, unbroken tension.",
+        "This cinematic piece evokes matter torn by a black hole, the ruins of a silent war, and the dread of inevitable confrontation — a suspended darkness where each step shakes the void."
+      ],
+      "No.Way.Back": [Supernova.Rush,
+        "A breathless piece driven by pounding drums and tense strings, evoking an unrelenting chase through deep space.",
+        "Its pulse is constant, tribal, cinematic — between mechanical tension and primal instinct.",
+        "Each strike fuels a race against unseen doom: a black hole, a silent predator, or fate itself. A relentless soundscape of survival, velocity, and irreversible force."
+      ],
+      "Supernova.Rush": [
+        "This gripping electro-cinematic track evokes the majestic violence of an expanding universe, shaken by the explosion of white dwarfs.",
+        "Built with dense instrumentation — tribal percussion, tense strings, and driving beats — it propels the listener into a controlled chaos, blending urban tension and cosmic frenzy.",
+        "Its fast tempo and gritty textures suggest a relentless chase through space, a Dantean pursuit where every pulse sounds like an alarm.",
+        "It’s a sensory dive into the dangerous beauty of the cosmos — where light is born from cataclysm and order rises from collapse."
       ]
-
-
-
     },
+
+
     "fr": {
       "Frozen.Echoes": [
         "“Frozen Echoes” est un hommage sonore aux paysages polaires et à la faune fantomatique de notre monde.",
@@ -195,8 +273,11 @@
         "Elle invite l’auditeur à un dialogue tranquille avec le temps lui-même, écho des cycles de croissance, de déclin et de renouveau qui façonnent le sol de la forêt.",
         "Sous ses mélodies fragiles, on perçoit le rythme d’une chose plus ancienne que nous : les racines qui tiennent, le silence qui se souvient, la terre qui continue — même quand nous oublions d’écouter."
       ],
-
-
+      "The.Last.Embrace": [
+        "Cette pièce est un hommage silencieux aux chimpanzés menacés par la déforestation et le braconnage.",
+        "Le piano lent, les accords mineurs et les textures sombres dessinent une tristesse digne, presque sacrée.",
+        "C’est une musique de protection instinctive, d’amour muet, et d’alerte sourde — une berceuse tragique jouée au bord du monde."
+      ],
       "Aldebaran": [
         "Cette pièce instrumentale a été conçue avec GarageBand comme une évocation sonore des mondes imaginés par Léo dans la saga Aldébaran.",
         "Elle mêle éléments électroniques atmosphériques et orchestrations organiques légères, sur une structure modale fluide et un tempo modéré.",
@@ -208,8 +289,6 @@
         "Bâtie sur des sons graves, une rythmique lente et une tension sourde, elle avance comme une marche du destin.",
         "Économe, sombre, presque méditative, elle suggère un pouvoir lucide et solitaire, mêlant grandeur antique et certitude froide d’un choix irréversible."
       ],
-
-
       "Eighteen": [
         "Créée avec GarageBand pour fêter les 18 ans d’Hugo, cette pièce instrumentale évoque le passage à l’âge adulte comme une promesse lumineuse.",
         "Des arpèges clairs, une pulsation douce et des harmonies ascendantes traduisent la fraîcheur d’un monde qui s’ouvre.",
@@ -234,6 +313,32 @@
         "Composée avec GarageBand, cette pièce groovy célèbre le flow personnel, l’audace d’être soi et la liberté de perception.",
         "Portée par des rythmes fluides, des textures funky et une énergie souple, elle invite à créer son monde, à sa façon.",
         "C’est une musique qui danse entre les atomes et les photons — un clin d’œil à la matière colorée de nos pensées, une pulsation libre : forge ta propre réalité."
+      ],
+      "Darkflow": [
+        "Cette pièce électronique immersive évoque l’espace, la tension et l’élan intérieur.",
+        "Ses nappes sombres et ses pulsations lentes construisent une progression hypnotique, presque cinématographique.",
+        "C’est une musique de propulsion mentale, à la croisée du vide et du mouvement — un écho aux grandes heures de l’électro des années 2000, lente, dense et magnétique."
+      ],
+      "Deep.Expanse": [
+          "Ce titre évoque l’exploration interstellaire, entre tension suspendue et beauté cosmique.",
+          "Des nappes ambient lentes ouvrent la scène comme un silence d’apesanteur, jusqu’à l’entrée d’un orchestre mélancolique.",
+          "Violoncelles et violons traduisent la solitude majestueuse de l’inconnu — une traversée intérieure autant que spatiale, nourrie par l’émerveillement et la gravité du vide."
+        ],
+      "Ash.of.Light": [
+        "Une progression lente, pesante, comme une descente dans un gouffre cosmique.",
+        "Des nappes saturées, des basses distordues, et un piano spectral créent une tension continue, oppressante.",
+        "Cette pièce cinématographique évoque la matière déformée par un trou noir, la guerre d’un monde éteint, et le vertige d’un affrontement inévitable — un silence qui tremble sous chaque pas."
+      ],
+      "No.Way.Back": [
+        "Un morceau haletant aux percussions profondes et aux cordes tendues, évoquant une traque spatiale implacable.",
+        "L’élan est constant, tribal et cinématique — entre pulsations mécaniques et instinct primal.",
+        "Chaque accent semble accélérer la course vers un danger invisible : un trou noir, un ennemi ou le destin lui-même. Une musique de survie, de tension, de propulsion irréversible."
+      ],
+      "Supernova.Rush": [
+        "Ce morceau électro-cinématique haletant évoque la violence majestueuse d’un univers en expansion, secoué par l’explosion de naines blanches.",
+        "Conçu avec une instrumentation dense — percussions tribales, cordes tendues et rythmes nerveux — il propulse l’auditeur dans un chaos ordonné, entre tension urbaine et frénésie cosmique.",
+        "Son tempo rapide et ses textures rugueuses évoquent une course inexorable à travers l’espace, une poursuite dantesque où chaque pulsation sonne comme une alerte.",
+        "C’est une immersion sensorielle dans la beauté dangereuse du cosmos, là où la lumière naît du cataclysme, et où l’ordre émerge de l’effondrement."
       ]
     }
   }
