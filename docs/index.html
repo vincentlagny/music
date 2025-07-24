@@ -1,4 +1,3 @@
-<!-- index.html épuré -->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -117,6 +116,9 @@
         }
     };
 
+    const isIOS = /iP(hone|od|ad)/.test(navigator.platform) ||
+        (navigator.userAgent.includes("Mac") && "ontouchend" in document);
+
     function formatTime(seconds) {
         const m = Math.floor(seconds / 60);
         const s = Math.floor(seconds % 60);
@@ -196,7 +198,30 @@
                 cursorColor: '#fff'
             });
 
-            wavesurfer.setVolume(parseFloat(volumeSlider.value));
+            // 🎚️🔒 Ajout spécifique iOS : gestion du volume via GainNode uniquement sous iOS
+            let gainNode = null;
+            if (isIOS) {
+                const audioContext = wavesurfer.backend.ac;
+                gainNode = audioContext.createGain();
+                gainNode.gain.value = parseFloat(volumeSlider.value);
+
+                // Retarde la connexion jusqu'à ce que bufferSource soit prêt
+                wavesurfer.on('ready', () => {
+                    try {
+                        const source = wavesurfer.backend.bufferSource;
+                        if (source) {
+                            source.disconnect();
+                            source.connect(gainNode);
+                            gainNode.connect(audioContext.destination);
+                        }
+                    } catch (e) {
+                        console.warn('🔇 iOS volume setup failed:', e);
+                    }
+                });
+            } else {
+                // 🌍 Tous les autres navigateurs → volume normal
+                wavesurfer.setVolume(parseFloat(volumeSlider.value));
+            }
             wavesurfer.load(`assets/audio/${format}/${baseFilename}.${format}`);
 
             coverContainer.onclick = () => {
@@ -297,7 +322,7 @@
         renderTracks(lang);
         document.getElementById('header-sub').textContent =
             lang === 'fr'
-                ? "Des musiques originales, composées par un humain et une IA — un reflet musical du climat."
+                ? "Des musiques originales, composées par un humain et une IA."
                 : "Original music with a human soul and an AI spark";
     }
 
@@ -424,6 +449,7 @@
     let isMuted = false;
     let lastVolume = 1;
 
+    /*
     volumeSlider.addEventListener('input', () => {
         const newVolume = parseFloat(volumeSlider.value);
         players.forEach(({ wavesurfer }) => wavesurfer.setVolume(newVolume));
@@ -431,7 +457,22 @@
         updateVolumeIcon();
         lastVolume = newVolume;
     });
+     */
+    volumeSlider.addEventListener('input', () => {
+        const newVolume = parseFloat(volumeSlider.value);
+        players.forEach(({ wavesurfer, gainNode }) => {
+            if (isIOS && gainNode) {
+                gainNode.gain.value = newVolume;
+            } else {
+                wavesurfer.setVolume(newVolume);
+            }
+        });
+        isMuted = newVolume === 0;
+        updateVolumeIcon();
+        lastVolume = newVolume;
+    });
 
+    /*
     muteToggle.addEventListener('click', () => {
         isMuted = !isMuted;
         if (isMuted) {
@@ -443,6 +484,21 @@
         }
         updateVolumeIcon();
     });
+     */
+    muteToggle.addEventListener('click', () => {
+        isMuted = !isMuted;
+        const volumeToSet = isMuted ? 0 : lastVolume;
+        volumeSlider.value = volumeToSet;
+        players.forEach(({ wavesurfer, gainNode }) => {
+            if (isIOS && gainNode) {
+                gainNode.gain.value = volumeToSet;
+            } else {
+                wavesurfer.setVolume(volumeToSet);
+            }
+        });
+        updateVolumeIcon();
+    });
+
 
     function updateVolumeIcon() {
         pathOn.style.display = isMuted ? 'none' : '';
