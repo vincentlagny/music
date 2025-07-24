@@ -4,42 +4,101 @@
       "album": "album1",
       "id": "Frozen.Echoes",
       "title": "Frozen Echoes",
-      "file": "Frozen.Echoes",
-      "cover": "Frozen.Echoes.png",
+      "file": "CD1.Frozen.Echoes",
+      "cover": "CD1.Frozen.Echoes.png",
       "hifi": "https://drive.google.com/file/d/16r07hL2Z862SFiDGeSpDf1QXmAS5jDmN/view?usp=sharing"
     },
     {
       "album": "album1",
       "id": "Dawn.of.the.Wild",
       "title": "Dawn of the Wild",
-      "file": "Dawn.of.the.Wild",
-      "cover": "Dawn.of.the.Wild.png",
+      "file": "CD1.Dawn.of.the.Wild",
+      "cover": "CD1.Dawn.of.the.Wild.png",
       "hifi": "https://drive.google.com/file/d/1paTLUEggUg7FoJDmOJZuracdsknNNVpv/view?usp=sharing"
     },
     {
       "album": "album1",
       "id": "Wings.Over.the.Fire",
       "title": "Wings Over the Fire",
-      "file": "Wings.Over.the.Fire",
-      "cover": "Wings.Over.the.Fire.png",
+      "file": "CD1.Wings.Over.the.Fire",
+      "cover": "CD1.Wings.Over.the.Fire.png",
       "hifi": "https://drive.google.com/file/d/1kVUHmPMTWcCmgr05mA4ql_YjlS0wC7F4/view?usp=sharing"
     },
     {
-      "album": "album2",
+      "album": "album1",
       "id": "Dust.and.Silence",
       "title": "Dust and Silence",
-      "file": "Dust.and.Silence",
-      "cover": "Dust.and.Silence.png",
+      "file": "CD1.Dust.and.Silence",
+      "cover": "CD1.Dust.and.Silence.png",
       "hifi": "https://drive.google.com/file/d/1x_m6eE0tmxwD1RzI_QEOtLVausTQJpXF/view?usp=sharing"
     },
     {
-      "album": "album2",
+      "album": "album1",
       "id": "The.Turning.Green",
       "title": "The Turning Green",
-      "file": "The.Turning.Green",
-      "cover": "The.Turning.Green.png",
+      "file": "CD1.The.Turning.Green",
+      "cover": "CD1.The.Turning.Green.png",
       "hifi": "https://drive.google.com/file/d/1ItLvIKVPpQnyr4gOoLhuY4WlmE9_-DPx/view?usp=sharing"
-    }
+    },
+
+    {
+      "album": "album2",
+      "id": "Tanos",
+      "title": "Tanos",
+      "file": "CD2.Tanos",
+      "cover": "CD2.Tanos.png",
+      "hifi": "https://drive.google.com/file/d/17WbHJ0BxKjjeOkYBa2KSizyHiZykM1CV/view?usp=sharing"
+    },
+    {
+      "album": "album2",
+      "id": "Aldebaran",
+      "title": "Aldebaran",
+      "file": "CD2.Aldebaran",
+      "cover": "CD2.Aldebaran.png",
+      "hifi": "https://drive.google.com/file/d/1Jjn7_fqUw4SW9hi4OPnWp-95WWkmqmSB/view?usp=sharing"
+    },
+
+    {
+      "album": "album3",
+      "id": "Never.Surrender",
+      "title": "Never Surrender",
+      "file": "CD3.Never.Surrender",
+      "cover": "CD3.Never.Surrender.png",
+      "hifi": "https://drive.google.com/file/d/1utNhBVCIF6jfZPDwBCCdN1IFSoYYAvev/view?usp=sharing"
+    },
+    {
+      "album": "album3",
+      "id": "Renaissance",
+      "title": "Renaissance",
+      "file": "CD3.Renaissance",
+      "cover": "CD3.Renaissance.png",
+      "hifi": "https://drive.google.com/file/d/1e9JlNGpxWzUOzM6tpbVwH9FiygdYFQnn/view?usp=sharing"
+    },
+    {
+      "album": "album3",
+      "id": "Your.reality",
+      "title": "Your reality",
+      "file": "CD3.Your.reality",
+      "cover": "CD3.Your.reality.png",
+      "hifi": "https://drive.google.com/file/d/1sfrPz42dK-x_osftABKo9zyKGcVMpUdy/view?usp=sharing"
+    },
+    {
+      "album": "album3",
+      "id": "18",
+      "title": "18",
+      "file": "CD3.18",
+      "cover": "CD3.18.png",
+      "hifi": "https://drive.google.com/file/d/1bup4zBhWSieHl4dV3v2l7X3J3nT0UXmM/view?usp=sharing"
+    },
+    {
+      "album": "album3",
+      "id": "Forever.80s",
+      "title": "Forever 80s",
+      "file": "CD3.Forever.80s",
+      "cover": "CD3.Forever.80s.png",
+      "hifi": "https://drive.google.com/file/d/1arV4ZZqqrwfB43UTCqC7WNAzEo1ZJNng/view?usp=sharing"
+    },
+
   ],
   "desc": {
     "en": {
@@ -67,7 +126,48 @@
         "Built on slow harmonic movements, subtle textures, and natural resonance, the music embraces silence as a living element — allowing breath, space, and depth.",
         "It invites the listener into a quiet dialogue with time itself, echoing the cycles of growth, decay, and renewal that shape the forest floor.",
         "Beneath its fragile melodies lies the steady rhythm of something older than us: the roots that hold, the silence that remembers, and the earth that continues — even when we forget to listen."
+      ],
+
+      "Aldebaran": [
+        "This instrumental track was created with GarageBand as a sonic tribute to the worlds imagined by Léo in the Aldebaran graphic novel series.",
+        "It blends atmospheric electronic elements with light organic instrumentation, built on a fluid modal structure and a moderate tempo.",
+        "Synth pads and airy textures evoke the vast strangeness of alien landscapes, the slow rhythm of exploration, and a sense of wonder before unknown life forms.",
+        "The music becomes a suspended space — a homage to quiet solitude, silent mysteries, and the fragile beauty of the unknown."
+      ],
+      "Tanos": [
+        "This instrumental piece, created with GarageBand, evokes the relentless presence of Thanos, both mythical and tragic in the Marvel universe.",
+        "Built on deep tones, a slow pulse, and steady tension, it unfolds like a march of fate.",
+        "Spare, dark, and nearly meditative, it channels a lucid and solitary power — blending ancient grandeur with the cold certainty of an irreversible choice."
+      ],
+
+      "18": [
+        "Created with GarageBand to celebrate Hugo’s 18th birthday, this instrumental track marks the threshold of adulthood with luminous promise.",
+        "Delicate arpeggios, a gentle pulse, and ascending harmonies reflect the freshness of a world opening up.",
+        "Balanced between tenderness and energy, the music captures the momentum of a life being built — between childhood memories and emerging maturity."
+      ],
+      "Forever.80s": [
+        "Created with GarageBand, this track captures the spirit of the 1980s with a bright, playful, and uplifting energy.",
+        "Analog synths, pop rhythms, and nostalgic melodies blend into a joyful and carefree pulse.",
+        "It’s a song of youth, freedom, and dreams — echoing a time when everything seemed possible and the future shimmered like an endless promise."
+      ],
+      "Never.Surrender": [
+        "Composed with GarageBand, this track conveys the strength of staying true to yourself despite judgment, hardship, or doubt.",
+        "It shifts between rhythmic tension and radiant release, reflecting struggle, hope, and persistence.",
+        "It’s a quiet anthem of resilience and inner drive — a soft yet firm refusal to give in, a breath of strength to keep moving forward without ever surrendering."
+      ],
+      "Renaissance": [
+        "Created with GarageBand, this piece is a heartfelt tribute to Angélique — to the joy of being fully myself again by her side.",
+        "Soft harmonies and melodic rises express an inner rebirth — calm, luminous, and deeply rooted.",
+        "It is a music of sincere love and gratitude, a gentle breath that honors a return to what matters — to the beating heart of self, guided by the presence of the other."
+      ],
+      "Your.Reality": [
+        "Created with GarageBand, this groovy track celebrates personal flow, boldness of self, and freedom of perception.",
+        "Driven by fluid rhythms, funky textures, and smooth energy, it invites you to shape your world — your way.",
+        "It’s a track that dances between atoms and photons — a wink to the colorful matter of our thoughts, a free pulse that says: forge your own reality."
       ]
+
+
+
     },
     "fr": {
       "Frozen.Echoes": [
@@ -94,6 +194,46 @@
         "Basée sur des mouvements harmoniques lents, des textures subtiles et une résonance naturelle, la musique accueille le silence comme un élément vivant — laissant place au souffle, à l’espace, à la profondeur.",
         "Elle invite l’auditeur à un dialogue tranquille avec le temps lui-même, écho des cycles de croissance, de déclin et de renouveau qui façonnent le sol de la forêt.",
         "Sous ses mélodies fragiles, on perçoit le rythme d’une chose plus ancienne que nous : les racines qui tiennent, le silence qui se souvient, la terre qui continue — même quand nous oublions d’écouter."
+      ],
+
+
+      "Aldebaran": [
+        "Cette pièce instrumentale a été conçue avec GarageBand comme une évocation sonore des mondes imaginés par Léo dans la saga Aldébaran.",
+        "Elle mêle éléments électroniques atmosphériques et orchestrations organiques légères, sur une structure modale fluide et un tempo modéré.",
+        "Les nappes synthétiques et les textures aériennes traduisent l’immensité étrange des paysages, la lenteur de l’exploration, et l’émerveillement devant des formes de vie inconnues.",
+        "La musique devient un espace suspendu, un hommage à la solitude bienveillante, aux mystères silencieux et à la fragile beauté de l’inconnu."
+      ],
+      "Tanos": [
+        "Cette composition instrumentale, conçue avec GarageBand, évoque la présence implacable de Thanos, figure tragique et mythique de l’univers Marvel.",
+        "Bâtie sur des sons graves, une rythmique lente et une tension sourde, elle avance comme une marche du destin.",
+        "Économe, sombre, presque méditative, elle suggère un pouvoir lucide et solitaire, mêlant grandeur antique et certitude froide d’un choix irréversible."
+      ],
+
+
+      "18": [
+        "Créée avec GarageBand pour fêter les 18 ans d’Hugo, cette pièce instrumentale évoque le passage à l’âge adulte comme une promesse lumineuse.",
+        "Des arpèges clairs, une pulsation douce et des harmonies ascendantes traduisent la fraîcheur d’un monde qui s’ouvre.",
+        "Équilibrée entre tendresse et énergie, la musique incarne l’élan d’une vie à construire, entre souvenirs d’enfance et maturité naissante."
+      ],
+      "Forever.80s": [
+        "Créée avec GarageBand, cette composition célèbre l’esprit des années 80 dans une énergie dansante, légère et lumineuse.",
+        "Synthés analogiques, rythmes pop et mélodies nostalgiques se mêlent dans une pulsation joyeuse et insouciante.",
+        "C’est une musique de jeunesse, de liberté et de rêve, qui évoque ces années où tout semblait possible, et où l’avenir brillait comme une promesse sans fin."
+      ],
+      "Never.Surrender": [
+        "Composée avec GarageBand, cette pièce traduit la force de rester soi-même malgré les regards, les obstacles ou les doutes.",
+        "Elle alterne tensions rythmées et respirations lumineuses, évoquant la lutte, l’espoir et la persévérance.",
+        "C’est une musique de résilience calme et d’élan intérieur — un refus doux mais ferme de se plier, un souffle d’espoir pour avancer sans jamais se rendre."
+      ],
+      "Renaissance": [
+        "Créée avec GarageBand, cette pièce est un hommage intime à Angélique — à la joie d’être soi-même, à nouveau, à ses côtés.",
+        "Les harmonies douces et les élans mélodiques traduisent une renaissance intérieure, calme, profonde et lumineuse.",
+        "C’est une musique d’amour sincère et de gratitude, un souffle paisible qui célèbre le retour à l’essentiel — au cœur battant de soi, guidé par la présence de l’autre."
+      ],
+      "Your.Reality": [
+        "Composée avec GarageBand, cette pièce groovy célèbre le flow personnel, l’audace d’être soi et la liberté de perception.",
+        "Portée par des rythmes fluides, des textures funky et une énergie souple, elle invite à créer son monde, à sa façon.",
+        "C’est une musique qui danse entre les atomes et les photons — un clin d’œil à la matière colorée de nos pensées, une pulsation libre : forge ta propre réalité."
       ]
     }
   }
