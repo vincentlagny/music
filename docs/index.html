@@ -203,7 +203,7 @@
                 barWidth: 2,
                 cursorColor: '#fff',
                 backend: 'WebAudio', // 👈 important iOS !
-                audioContext: audioContext,
+                audioContext: () => audioContext,
                 audioScriptProcessor: null, // laisse WaveSurfer gérer
             });
 
@@ -238,8 +238,6 @@
                 const total = formatTime(wavesurfer.getDuration());
                 durationEl.textContent = `00:00 / ${total}`;
             });
-            // Volume iOS
-            players.push({ wavesurfer });
 
             wavesurfer.on('audioprocess', () => {
                 const current = formatTime(wavesurfer.getCurrentTime());
@@ -305,9 +303,6 @@
                 wavesurfer.seekTo(percent); // méthode officielle de WaveSurfer
             });
 
-
-
-
             players.push({ wavesurfer });
         });
     }
@@ -328,6 +323,7 @@
         ////////////////////////////// Gestion du gain (pour la gestion du volume sous iOS)
         audioContext = new (window.AudioContext || window.webkitAudioContext)();
         gainNode = audioContext.createGain(); // 👈 crée un noeud de gain
+        gainNode.connect(audioContext.destination); // ✅ nécessaire
         volumeSlider = document.getElementById('volume-slider');
         if (volumeSlider) {
             volumeSlider.addEventListener('input', () => {
