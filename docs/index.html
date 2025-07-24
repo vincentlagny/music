@@ -114,7 +114,11 @@
             downloadHifi: "⬇️ Télécharger en HiFi (.flac)"
         }
     };
+
+    // Variables de gestion locale du gain (pour volume sous iOS)
     let volumeSlider = null; // 👈 déclaration globale
+    let audioContext; // 👈 en haut
+    let gainNode;     // 👈 en haut
 
     ////////////////////////////// Fonctions de formatages
     function formatTime(seconds) {
@@ -317,10 +321,21 @@
     window.addEventListener('DOMContentLoaded', () => {
 
         ////////////////////////////// Gestion du gain (pour la gestion du volume sous iOS)
-        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-        const gainNode = audioContext.createGain(); // 👈 crée un noeud de gain
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        gainNode = audioContext.createGain(); // 👈 crée un noeud de gain
         volumeSlider = document.getElementById('volume-slider');
-        gainNode.gain.value = parseFloat(volumeSlider.value || 1); // volume initial
+        if (volumeSlider) {
+            volumeSlider.addEventListener('input', () => {
+                const newVolume = parseFloat(volumeSlider.value);
+                players.forEach(({ gainNode }) => {
+                    if (gainNode) gainNode.gain.value = newVolume;
+                });
+                isMuted = newVolume === 0;
+                updateVolumeIcon();
+                lastVolume = newVolume;
+            });
+            gainNode.gain.value = parseFloat(volumeSlider.value || 1); // volume initial
+        }
 
         const lang = localStorage.getItem('lang') || 'en';
         setLanguage(lang);
@@ -442,21 +457,6 @@
     const pathOff = volumeIcon.querySelector('#volume-off');
     let isMuted = false;
     let lastVolume = 1;
-
-    volumeSlider.addEventListener('input', () => {
-        const newVolume = parseFloat(volumeSlider.value);
-
-        // Version volume local
-        // players.forEach(({ wavesurfer }) => wavesurfer.setVolume(newVolume));
-
-        // Version Volume iOS
-        players.forEach(({ gainNode }) => gainNode.gain.value = newVolume);
-
-        // Générique
-        isMuted = newVolume === 0;
-        updateVolumeIcon();
-        lastVolume = newVolume;
-    });
 
     muteToggle.addEventListener('click', () => {
         isMuted = !isMuted;
