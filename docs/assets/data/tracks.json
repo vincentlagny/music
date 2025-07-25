@@ -90,6 +90,22 @@
     },
     {
       "album": "album3",
+      "id": "Tanos",
+      "title": "Tanos",
+      "file": "CD2.Tanos",
+      "cover": "CD2.Tanos.png",
+      "hifi": "https://drive.google.com/file/d/17WbHJ0BxKjjeOkYBa2KSizyHiZykM1CV/view?usp=sharing"
+    },
+    {
+      "album": "album3",
+      "id": "Aldebaran",
+      "title": "Aldebaran",
+      "file": "CD2.Aldebaran",
+      "cover": "CD2.Aldebaran.png",
+      "hifi": "https://drive.google.com/file/d/1Jjn7_fqUw4SW9hi4OPnWp-95WWkmqmSB/view?usp=sharing"
+    },
+    {
+      "album": "album3",
       "id": "Darkflow",
       "title": "Darkflow",
       "file": "CD3.Darkflow",
@@ -127,25 +143,10 @@
       "file": "CD2.Supernova.Rush",
       "cover": "CD2.Supernova.Rush.png",
       "hifi": "https://drive.google.com/file/d/1hzymnW77YOqAmxeh8n65PJ5kBmMiOuVq/view?usp=sharing"
-    },
-
-
-    {
-      "album": "album2",
-      "id": "Tanos",
-      "title": "Tanos",
-      "file": "CD2.Tanos",
-      "cover": "CD2.Tanos.png",
-      "hifi": "https://drive.google.com/file/d/17WbHJ0BxKjjeOkYBa2KSizyHiZykM1CV/view?usp=sharing"
-    },
-    {
-      "album": "album2",
-      "id": "Aldebaran",
-      "title": "Aldebaran",
-      "file": "CD2.Aldebaran",
-      "cover": "CD2.Aldebaran.png",
-      "hifi": "https://drive.google.com/file/d/1Jjn7_fqUw4SW9hi4OPnWp-95WWkmqmSB/view?usp=sharing"
     }
+
+
+
   ],
   "desc": {
     "en": {
